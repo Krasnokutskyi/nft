@@ -29,11 +29,18 @@ class PackagesController extends AdminController
   public function createAction(CreatePackageForm $request)
   {
     $validated = $request->safe()->only([
-      'name', 'price', 'content'
+      'name', 'price', 'content', 'redirect_content'
     ]);
 
-    $validated['position'] = intval(Packages::orderBy('position', 'desc')->first()->position) + 1;
+    $packages_by_position = Packages::orderBy('position', 'desc')->get();
+    if ($packages_by_position->count() > 0) {
+      $validated['position'] = intval($packages_by_position->first()->position) + 1;
+    } else {
+      $validated['position'] = 0;
+    }
+
     $validated['content'] = implode(',', $validated['content']);
+    $validated['redirect_content'] = implode(',', $validated['redirect_content']);
 
     Packages::create($validated);
 
@@ -64,10 +71,12 @@ class PackagesController extends AdminController
       $package = $package->first();
 
       $validated = $request->safe()->only([
-        'name', 'price', 'content'
+        'name', 'price', 'content', 'redirect_content'
       ]);
+      
 
       $validated['content'] = implode(',', $validated['content']);
+      $validated['redirect_content'] = implode(',', $validated['redirect_content']);
 
       $package->update($validated);
 

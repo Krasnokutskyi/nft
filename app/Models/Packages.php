@@ -16,6 +16,7 @@ class Packages extends Model
     "name",
     "price",
     "content",
+    "redirect_content",
   ];
 
   public function users()
