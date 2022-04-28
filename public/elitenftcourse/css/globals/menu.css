@@ -1,0 +1,41 @@
+.menu {
+    width: 100%;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.menu ul {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    font-size: 1rem;
+}
+
+.menu li {
+    text-align: center;
+    margin-left: .625rem;
+    margin-right: .625rem;
+    transition: .3s ease;
+}
+
+.menu a:hover {
+    border-bottom: 2px solid #e5f43b;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #FFF;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+
+.auth>svg>path:hover {
+    fill: azure;
+}
+
+.auth:hover {
+    border: 2px solid azure;
+}

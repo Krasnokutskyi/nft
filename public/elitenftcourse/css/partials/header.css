@@ -1,0 +1,48 @@
+.header {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 2.5rem;
+    box-sizing: border-box;
+    z-index: 99;
+    top: 0;
+    left: 0;
+}
+
+.logo>img {
+    display: flex;
+    position: relative;
+    top: 0px;
+    left: 4px;
+}
+
+.auth {
+    position: relative;
+    width: 2.5rem;
+    height: 2.5rem;
+    min-width: 2.5rem;
+    color: #E5F43B;
+    box-sizing: border-box;
+    border: 2px solid rgba(229, 244, 59, .4);
+    border-radius: .8rem
+}
+
+.auth:hover {
+    color: white;
+    border: 2px solid white;
+}
+
+.auth>* {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.auth_logout>* {
+    max-width: 1rem;
+}

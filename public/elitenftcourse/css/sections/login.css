@@ -1,0 +1,47 @@
+.login,
+.login .wrapper {
+  height: 100%;
+}
+
+.login__wrapper {
+  position: absolute;
+  width: 100%;
+  max-width: 30rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login__label {
+  display: block;
+  margin-top: 2rem;
+}
+
+.login__label div {
+  font-size: 1.2rem;
+}
+
+.login__input {
+  width: 100%;
+  display: inline-block;
+  box-sizing: border-box;
+  border-radius: .5rem;
+  padding: 0 1.25rem;
+  height: 4rem;
+  color: #FFF;
+  font-size: 1.5rem;
+  margin-top: 0.3rem;
+  font-family: 'Verdana', sans-serif;
+  border: 2.6px solid #5B647C;
+  background: none;
+  outline: none;
+  margin-right: 3rem;
+  box-sizing: border-box;
+}
+
+.login__btn {
+  width: 100%;
+  border: none;
+  margin-top: 2rem;
+  cursor: pointer;
+}

@@ -1,0 +1,10 @@
+.intro {
+    padding-top: 12.75rem;
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
+}
+
+.intro .btn {
+    margin: 2rem auto 6rem;
+}

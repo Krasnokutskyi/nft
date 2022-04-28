@@ -1,0 +1,54 @@
+.features {
+    padding-top: 6.875rem;
+    padding-bottom: 3.625rem;
+}
+
+.features__img {
+    position: relative;
+}
+
+.features__img>img {
+    width: 10rem;
+    height: 10rem;
+}
+
+.features .row {
+    max-width: 62.125rem;
+    margin: 0.4375rem auto;
+    color: #fff;
+}
+
+.features .row>div {
+    text-align: center;
+    margin: 2rem auto;
+}
+
+.features__text {
+    font-size: 1.25rem;
+    position: relative;
+    top: 0.875rem;
+    left: 1px;
+}
+
+.features__text1 {
+    left: -0.275rem;
+}
+
+.features__text3 {
+    left: 0.3125rem;
+}
+
+.features__text4 {
+    left: -0.25rem;
+    top: 0.375rem;
+}
+
+.features__text5 {
+    top: 0.4rem;
+    left: 1px;
+}
+
+.features__text6 {
+    top: 0.325rem;
+    left: 0.375rem;
+}

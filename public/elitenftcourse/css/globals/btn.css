@@ -1,0 +1,50 @@
+.btn {
+    font-family: 'Whyte Inktrap';
+    font-size: 1.25rem;
+    text-decoration: none;
+    color: #fff;
+    display: inline-block;
+    background-color: rgba(229, 244, 59, 1);
+    padding: 1.375rem 2.6rem 1rem;
+    color: black;
+    border-radius: 0.46rem;
+    transition: .3s ease;
+    box-sizing: border-box;
+}
+
+.btn_small {
+    padding-top: 1rem;
+    padding-bottom: 0.86rem;
+}
+
+.btn:hover {
+    background: transparent;
+    box-shadow: inset 0 0 0 2px #e5f33d;
+    color: #e5f33d;
+}
+
+.btn_block {
+    display: block;
+    text-align: center;
+}
+
+.btn_icon {
+    display: flex;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    padding-left: 3.45rem;
+    padding-right: 3.45rem;
+}
+
+.btn_icon svg {
+    position: relative;
+    top: -3px;
+    margin-right: .5rem;
+}
+
+.btn:active {
+    background: transparent;
+    box-shadow: inset 0 0 0 4px #e5f33d;
+    color: #e5f33d;
+}

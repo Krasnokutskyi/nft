@@ -147,6 +147,19 @@ return [
         ],
     ],
 
+    'phone' => 'The :attribute field contains an invalid number.',
+
+    'credit_card' => [
+      'card_invalid' => 'Invalid card number.',
+      'card_pattern_invalid' => 'Invalid card number.',
+      'card_length_invalid' => 'Incorrect card length.',
+      'card_checksum_invalid' => 'Invalid card number.',
+      'card_expiration_month_invalid' => 'Card expiration month is invalid.',
+      'card_expiration_year_invalid' => 'Card expiration year is invalid',
+      'card_expiration_year_invalid' => 'Card expiration year is invalid',
+      'card_cvc_invalid' => 'Card CVV/CVC is invalid.',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Attributes

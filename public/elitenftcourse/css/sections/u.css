@@ -1,0 +1,122 @@
+.u1,
+.u2,
+.u3,
+.u4,
+.u5,
+.u6,
+.u7,
+.u8,
+.u9,
+.u10 {
+    position: relative;
+}
+
+.u1::after {
+    content: " ";
+    background-image: url(../../images/get-ready.svg);
+    background-repeat: no-repeat;
+    width: 12.8125rem;
+    height: .5625rem;
+    position: absolute;
+    left: 0.4rem;
+    bottom: -.4375rem;
+}
+
+.u2::after {
+    content: " ";
+    background-image: url(../../images/earning.svg);
+    background-repeat: no-repeat;
+    width: 9.5625rem;
+    height: .4375rem;
+    position: absolute;
+    left: 0;
+    bottom: -.4375rem;
+}
+
+.u3::after {
+    content: " ";
+    background-image: url(../../images/opportunities.svg);
+    background-repeat: no-repeat;
+    width: 20.875rem;
+    height: .4375rem;
+    bottom: 0rem;
+    left: 0.075rem;
+    position: absolute;
+}
+
+.u5::after {
+    content: " ";
+    background-image: url(../../images/look.svg);
+    background-repeat: no-repeat;
+    width: 7.0625rem;
+    bottom: -0.7rem;
+    height: .75rem;
+    position: absolute;
+    left: 0rem;
+}
+
+.u4::after {
+    content: " ";
+    background-image: url(../../images/you-learn.svg);
+    background-repeat: no-repeat;
+    width: 16.0625rem;
+    height: 1.25rem;
+    position: absolute;
+    left: 0;
+    bottom: -1.4rem;
+}
+
+.u6::after {
+    content: " ";
+    background-image: url(../../images/choose.svg);
+    background-repeat: no-repeat;
+    width: 11.75rem;
+    height: .625rem;
+    position: absolute;
+    left: 0rem;
+    bottom: -0.4rem;
+}
+
+.u7::after {
+    content: " ";
+    background-image: url(../../images/whats.svg);
+    background-repeat: no-repeat;
+    width: 11.75rem;
+    height: .625rem;
+    position: absolute;
+    left: 0rem;
+    bottom: -0.4rem;
+}
+
+.u8::after {
+    content: " ";
+    background-image: url(../../images/faq.svg);
+    background-repeat: no-repeat;
+    width: 11.75rem;
+    height: .625rem;
+    position: absolute;
+    left: 0rem;
+    bottom: -0.4rem;
+}
+
+.u9::after {
+    content: " ";
+    background-image: url(../../images/market.svg);
+    background-repeat: no-repeat;
+    width: 11.75rem;
+    height: .625rem;
+    position: absolute;
+    left: 0rem;
+    bottom: -0.4rem;
+}
+
+.u10::after {
+    content: " ";
+    background-image: url(../../images/contacts.svg);
+    background-repeat: no-repeat;
+    width: 11.435rem;
+    height: .625rem;
+    position: absolute;
+    left: 1rem;
+    bottom: -0.4rem;
+}

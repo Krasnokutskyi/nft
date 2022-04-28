@@ -1,0 +1,135 @@
+#menu__toggle {
+    opacity: 0;
+}
+
+
+/* стилизуем кнопку */
+
+.menu__btn {
+    align-items: center;
+    display: none;
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+    z-index: 1;
+    margin-left: auto;
+    margin-right: 1rem;
+    padding: 0.6rem;
+    border: 2px solid rgba(229, 244, 59, .4);
+    border-radius: 0.75rem;
+}
+
+
+/* добавляем "гамбургер" */
+
+.menu__btn>span,
+.menu__btn>span::before,
+.menu__btn>span::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: #e5f43b;
+}
+
+.menu__btn>span::before {
+    content: '';
+    top: -0.5rem;
+}
+
+.menu__btn>span::after {
+    content: '';
+    top: 0.5rem;
+}
+
+
+/* контейнер меню */
+
+.menu__box {
+    display: block;
+    position: fixed;
+    visibility: hidden;
+    top: 0;
+    left: -100%;
+    width: 18.75rem;
+    height: 100%;
+    margin: 0;
+    padding: 80px 0;
+    list-style: none;
+    text-align: center;
+    background-color: #ECEFF1;
+    box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
+}
+
+
+/* элементы меню */
+
+.menu__item {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.menu__item:hover {
+    background-color: #CFD8DC;
+}
+
+#menu__toggle:checked~.menu__btn>span {
+    transform: rotate(45deg);
+}
+
+#menu__toggle:checked~.menu__btn>span::before {
+    top: 0;
+    transform: rotate(0);
+}
+
+#menu__toggle:checked~.menu__btn>span::after {
+    top: 0;
+    transform: rotate(90deg);
+}
+
+#menu__toggle:checked~.menu__box {
+    visibility: visible;
+    left: 0;
+}
+
+.menu__btn>span,
+.menu__btn>span::before,
+.menu__btn>span::after {
+    transition-duration: .25s;
+}
+
+.menu__box {
+    transition-duration: .25s;
+    background-color: #000000bd;
+    max-width: 78.125rem;
+    max-height: 53.75rem;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 100%;
+    border-radius: 0.75rem;
+    backdrop-filter: blur(1.25rem);
+    -webkit-backdrop-filter: blur(1.25rem);
+    -moz-backdrop-filter: blur(1.25rem);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.menu__box li {
+    font-family: 'Whyte';
+    margin: 1.4rem auto;
+}
+
+.menu__item {
+    transition-duration: .25s;
+}
+
+.hamburger-menu {
+    position: absolute;
+}

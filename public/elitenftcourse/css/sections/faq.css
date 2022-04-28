@@ -1,0 +1,110 @@
+.faq {
+    position: relative;
+    padding-top: 15rem;
+    padding-bottom: 17rem;
+}
+
+.faq::before {
+    content: '';
+    width: 134.5625rem;
+    height: 123.4375rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url(../../images/blur-faq.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.faq::after {
+    content: '';
+    width: 85.125rem;
+    height: 68.78125rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url(../../images/bg-faq.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.faq__list {
+    max-width: 62.125rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2.5rem;
+}
+
+.faq__item {
+    position: relative;
+    padding: 2rem 2.5rem 1.6rem;
+    background-color: #172066;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.faq__item.active {
+    cursor: default;
+    background-color: #3A4EDE;
+}
+
+.faq__item p,
+.faq__item h3 {
+    margin: 0;
+}
+
+.faq__item.active .faq__title {
+    color: #FFF;
+}
+
+.faq__title {
+    font-family: 'Whyte Inktrap', sans-serif;
+    font-weight: normal;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: #E5F43B;
+    cursor: pointer;
+}
+
+.faq__title::before {
+    content: "";
+    position: absolute;
+    width: 3.5rem;
+    height: 3.5rem;
+    background-image: url(../../images/icon-arrow.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    top: .875rem;
+    right: 1rem;
+    transition: .3s;
+}
+
+.faq__item.active .faq__title::before {
+    transform: rotate(180deg);
+}
+
+.faq__text-wrap {
+    height: 0;
+    overflow: hidden;
+    transition: .3s;
+}
+
+.faq__text {
+    font-size: 1.25rem;
+    line-height: 1.6875rem;
+    opacity: 0.8;
+    color: #FFF;
+    max-width: 52rem;
+    padding-top: 1rem;
+    box-sizing: border-box;
+}
+
+.faq__item:hover {
+    background-color: #3a4ede;
+}

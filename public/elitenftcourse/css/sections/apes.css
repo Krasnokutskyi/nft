@@ -1,0 +1,35 @@
+.apes {
+    position: relative;
+    width: 100%;
+    max-width: 90rem;
+    margin-left: auto;
+    margin-right: auto;
+    top: -3.4375rem;
+    height: 30.71875rem;
+    background-image: url(../../images/bg-apes.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
+
+@media (max-width: 1260px) {
+    .apes {
+        margin-left: -2.5rem;
+        margin-right: -2.5rem;
+        width: auto;
+    }
+}
+
+.apes::before {
+    content: '';
+    width: 125.8125rem;
+    height: 30.625rem;
+    background-image: url(../../images/apes-blur.png);
+    background-position: top;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}

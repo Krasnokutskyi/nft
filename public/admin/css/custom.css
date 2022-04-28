@@ -1,0 +1,117 @@
+/* Custom form */
+.custom-form .error-text
+{
+	color: red;
+}
+.custom-form .checkboxradio-group
+{
+	border: 1px solid #dee2e6; 
+	padding: .875rem 1rem; 
+	border-radius: .4375rem; 
+	line-height: 1.5; 
+	color: #8898aa;
+	min-height: 100px;
+  max-height: 155px;
+  height: 100%;
+  overflow-y: scroll;
+}
+.custom-form .checkboxradio-group .form-check
+{
+	margin-bottom: 3px;
+}
+.custom-form .checkboxradio-group .form-check:last-child
+{
+	margin-bottom: 0px;
+}
+.custom-form .checkboxradio-group .form-check .form-check-label
+{
+	cursor: pointer;
+}
+.custom-form .ql-editor iframe 
+{
+  pointer-events: none;
+}
+.custom-form .input-group.invalid-feedback
+{
+	border: 1px solid;
+}
+
+/* Create and edit post */
+.ctreate_post .create_post-form .text-editor-container .ql-snow .ql-editor,
+.edit_post .edit_post-form .text-editor-container .ql-snow .ql-editor
+{
+	min-height: 350px;
+}
+.edit_post .jFiler-items-grid .jFiler-item .jFiler-item-container
+{
+	margin-bottom: 5px;
+}
+.ctreate_post .create_post-form .ql-editor iframe,
+.edit_post .edit_post-form .ql-editor iframe
+{
+	pointer-events: none;
+}
+
+/* Edit video */
+.edit_video-form .jFiler-items-grid .jFiler-item.video-item .jFiler-item-container .jFiler-item-thumb,
+.edit_video-form .jFiler-items-grid .jFiler-item.video-item .jFiler-item-container .jFiler-item-thumb .jFiler-item-thumb-video
+{
+	height: auto;
+	width: 100%;
+	max-height: 360px;
+	max-width: 480px;
+	display: flex;
+}
+.edit_video-form .jFiler-items-grid .jFiler-item.video-item .jFiler-item-container .jFiler-item-thumb .jFiler-item-thumb-video video
+{
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+
+/* Brand */
+.navbar-vertical .navbar-brand
+{
+	margin-top: 17px;
+}
+.navbar-vertical .navbar-brand-img, .navbar-vertical .navbar-brand > img
+{
+	max-height: 4rem;
+}
+
+/* Select2 */
+.select2-container .select2-selection--single,
+.form-control-lg + .select2-container .select2-selection--single, 
+.form-control-lg + .select2-container--default.select2-container--focus .select2-selection--multiple, 
+.form-control-lg + .select2-container--default .select2-selection--multiple
+{
+	font-size: 1rem !important;
+	height: calc(1.5em + 1.25rem + 5px) !important;
+	padding: 0.75rem 1rem !important;
+}
+.select2-container--default .select2-selection--single
+{
+	border: 1px solid #dee2e6 !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered
+{
+	line-height: 1.5 !important;
+	font-weight: 400 !important;
+	font-family: inherit !important;
+	color: #8898aa !important;
+}
+.select2-container .select2-selection--single .select2-selection__rendered
+{
+	padding-left: 0px !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__placeholder
+{
+	color: inherit !important;
+}
+
+/* Packages */
+.table-packages tbody.list td
+{
+	width: inherit;
+	cursor: pointer;
+}

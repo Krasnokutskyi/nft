@@ -1,0 +1,11 @@
+.ajax-form .error-text
+{
+	display: none;
+	font-size: 14px;
+	color: red;
+	margin: 5px 0 0 3px;
+}
+.ajax-form .is-invalid
+{
+	border-color: red !important;
+}

@@ -1,0 +1,82 @@
+.promo__item {
+    display: flex;
+    padding: 1.5rem;
+    padding-top: 0;
+}
+
+.promo__item-title {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: 'Whyte Inktrap';
+    color: #fff;
+    min-width: 22rem;
+    position: relative;
+}
+
+.promo__item-title_u1 {
+    position: relative;
+    top: -1.125rem;
+}
+
+.promo__item-title_u1::after {
+    content: " ";
+    background-image: url(../../images/no-hesitations.svg);
+    background-repeat: no-repeat;
+    width: 14.75rem;
+    height: .5rem;
+    position: absolute;
+    left: -0.25rem;
+    top: 2rem;
+}
+
+.promo__item-title_u2::after {
+    content: " ";
+    background-image: url(../../images/just-get-started.svg);
+    background-repeat: no-repeat;
+    width: 15.25rem;
+    height: .5rem;
+    position: absolute;
+    left: 0;
+    top: 2.25rem;
+}
+
+.promo__item-title_u3::after {
+    content: " ";
+    background-image: url(../../images/right-now.svg);
+    background-repeat: no-repeat;
+    width: 10.0625rem;
+    height: .625rem;
+    position: absolute;
+    left: -0.25rem;
+    top: 2.125rem;
+}
+
+.promo__item-text1 {
+    position: relative;
+    left: -1px;
+    top: -0.5625rem;
+    letter-spacing: 0.14px;
+}
+
+.promo__item-text2 {
+    position: relative;
+    left: -1px;
+    top: 0.5rem;
+    letter-spacing: 0.14px;
+}
+
+.promo__item-text3 {
+    position: relative;
+    left: -1px;
+    top: 1.5rem;
+    letter-spacing: 0.14px;
+}
+
+.promo__item-text {
+    color: #fff;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.75rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
