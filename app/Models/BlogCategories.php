@@ -26,6 +26,6 @@ class BlogCategories extends Model
 
   public function posts()
   {
-    return $this->hasManyThrough(BlogPosts::class, BlogCategoriesPosts::class, 'post_id', 'id', 'id', 'category_id');
+    return $this->hasManyThrough(BlogPosts::class, BlogCategoriesPosts::class, 'category_id', 'id', 'id', 'post_id');
   }
 }

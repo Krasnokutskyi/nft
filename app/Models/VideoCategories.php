@@ -26,6 +26,6 @@ class VideoCategories extends Model
 
   public function posts()
   {
-    return $this->hasManyThrough(VideoPosts::class, VideoCategoriesPosts::class, 'post_id', 'id', 'id', 'category_id');
+    return $this->hasManyThrough(VideoPosts::class, VideoCategoriesPosts::class, 'category_id', 'id', 'id', 'post_id');
   }
 }

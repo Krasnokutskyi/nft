@@ -26,7 +26,7 @@ class PostsController extends Controller
       }
 
       $posts = $current_category->first()->posts()->orderBy('created_at', 'desc')->paginate(8);
-
+      
     } else {
 
       $posts = Posts::with('categories')->orderBy('created_at', 'desc')->paginate(8);

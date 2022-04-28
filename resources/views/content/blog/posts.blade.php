@@ -12,7 +12,7 @@
         <a href="{{ route('blog.posts') }}" class="@if (Route::currentRouteName() === 'blog.posts') current @endif">All</a>
           @foreach ($categories as $category)
             @if ($category->posts->count() > 0 or Request::route('alias') === $category->alias)
-              <a class="@if (Request::route('alias') === $category->alias) current @endif" href="{{ route('videos.postsByCategory', ['alias' => $category->alias]) }}">{{ $category->title }}</a>
+              <a class="@if (Request::route('alias') === $category->alias) current @endif" href="{{ route('blog.postsByCategory', ['alias' => $category->alias]) }}">{{ $category->title }}</a>
             @endif
           @endforeach
       </div>
