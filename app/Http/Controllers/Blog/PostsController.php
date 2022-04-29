@@ -50,18 +50,16 @@ class PostsController extends Controller
 
   public function showPostPreview(Request $request)
   {
-    if (auth("admin")->check()) {
 
-      $posts = Posts::where('preview', '=', strval($request->route('image')));
+    $posts = Posts::where('preview', '=', strval($request->route('image')));
 
-      if ($posts->count() > 0) {
-        $preview_path = 'blog/preview/' . $posts->first()->preview;
-        if (Storage::disk('content')->exists($preview_path)) {
-          $preview = Storage::disk('content')->get($preview_path);
-          $response = Response::make($preview);
-          $response->header("Content-Type", Storage::disk('content')->mimeType($preview_path));
-          return $response;
-        }
+    if ($posts->count() > 0) {
+      $preview_path = 'blog/preview/' . $posts->first()->preview;
+      if (Storage::disk('content')->exists($preview_path)) {
+        $preview = Storage::disk('content')->get($preview_path);
+        $response = Response::make($preview);
+        $response->header("Content-Type", Storage::disk('content')->mimeType($preview_path));
+        return $response;
       }
     }
 

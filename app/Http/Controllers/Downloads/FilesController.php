@@ -38,30 +38,27 @@ class FilesController extends Controller
 
   public function downloadAllFiles(Request $request)
   {
-    if (auth("admin")->check()) {
+    $files = Files::all();
 
-      $files = Files::all();
+    if ($files->count() > 0) {
 
-      if ($files->count() > 0) {
+        $zip = new ZipArchive();
+        $zipFile = Storage::disk('content')->path('downloads/' . Str::random(20) . '.zip');
 
-          $zip = new ZipArchive();
-          $zipFile = Storage::disk('content')->path('downloads/' . Str::random(20) . '.zip');
+        if ($zip->open($zipFile, ZipArchive::CREATE) === TRUE) {
 
-          if ($zip->open($zipFile, ZipArchive::CREATE) === TRUE) {
-
-            foreach ($files as $key => $file) {
-              $file_path = 'downloads/files/' . $file->file;
-              if (Storage::disk('content')->exists($file_path)) {
-                $download_file = Storage::disk('content')->path($file_path);
-                $new_name = $file->title . '.' . pathinfo($download_file, PATHINFO_EXTENSION);
-                $zip->addFile($download_file, $new_name);
-              }
+          foreach ($files as $key => $file) {
+            $file_path = 'downloads/files/' . $file->file;
+            if (Storage::disk('content')->exists($file_path)) {
+              $download_file = Storage::disk('content')->path($file_path);
+              $new_name = $file->title . '.' . pathinfo($download_file, PATHINFO_EXTENSION);
+              $zip->addFile($download_file, $new_name);
             }
+          }
 
-            $zip->close();
+          $zip->close();
 
-            return response()->download($zipFile)->deleteFileAfterSend(true);
-        }
+          return response()->download($zipFile)->deleteFileAfterSend(true);
       }
     }
 

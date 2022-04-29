@@ -13,7 +13,7 @@ class LoginController extends Controller
     $validated = $request->safe()->only(['email', 'password']);
 
     if(auth("web")->attempt($validated, true)) {
-      return response()->json(['redirect' => route("content")]);
+      return response()->json(['redirect' => route("blog.posts")]);
     }
 
     return response()->json([
