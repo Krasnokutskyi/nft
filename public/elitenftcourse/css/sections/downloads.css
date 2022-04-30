@@ -126,12 +126,19 @@
     color: #E4E4E8;
 }
 
-.downloads__box-img-title {
+.downloads__box-img-title
+{
     display: flex;
     width: 50%;
     position: relative;
     /* top: 89%; */
     align-items: center;
+}
+.downloads__box-img-title img
+{
+    max-height: 2.75rem;
+    max-width: 100%;
+    border-radius: 0.4rem;
 }
 
 .downloads__box-title {
