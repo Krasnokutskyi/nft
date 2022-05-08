@@ -18,6 +18,7 @@ class CreateOrderParametersTable extends Migration
       $table->unsignedBigInteger('order_id');
       $table->text('name');
       $table->text('value');
+      $table->timestamps();
 
       $table->foreign('order_id')->references('id')->on('orders')->cascadeOnUpdate()->cascadeOnDelete();
     });

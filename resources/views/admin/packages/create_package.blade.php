@@ -33,7 +33,7 @@
               <h3 class="mb-0">Create package</h3>
             </div>
             <div class="card-body">
-              <form method="POST" preloader-ajax-form=".card" class="ajax-form custom-form">
+              <form method="POST" preloader-ajax-form=".card" class="ajax-form custom-form create_package" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                   <label for="name-input" class="form-control-label">Name:</label>
@@ -45,9 +45,17 @@
                 </div>
                 <div class="form-group">
                   <label for="price-input" class="form-control-label">Price:</label>
-                  <input class="form-control" type="text" id="price-input" name="price" autocomplete="off" required>
+                  <input class="form-control" type="number" id="price-input" name="price" autocomplete="off" required value="0.00" placeholder="0.00">
                   <div class="invalid-feedback error-text price_error"></div>
                   @error('price')
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <label for="discount-input" class="form-control-label">Discount (*New price):</label>
+                  <input class="form-control" type="number" id="discount-input" name="discount" autocomplete="off" value="0.00" placeholder="0.00">
+                  <div class="invalid-feedback error-text discount_error"></div>
+                  @error('discount')
                     <div class="invalid-feedback d-block">{{ $message }}</div>
                   @enderror
                 </div>
@@ -92,9 +100,52 @@
                 </div>
                 <div class="form-group">
                   <label for="checkbox_redirect_content" class="form-control-label">After registration, redirect a user to:</label>
-                  <select name="redirect_content[]" class="form-control" id="checkbox_redirect_content" autocomplete="off"></select>
+                  <select name="redirect_content" class="form-control" id="checkbox_redirect_content" autocomplete="off"></select>
                   <div class="invalid-feedback error-text redirect_content_error"></div>
                   @error('redirect_content')
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="description border-bottom mb-3">
+                  <div class="page-header border-bottom">
+                    <h3>Description</h3>      
+                  </div>
+                  <div class="form-group mt-3">
+                    <label for="subtitle" class="form-control-label">Subtitle:</label>
+                    <input class="form-control" type="text" name="subtitle" id="subtitle" autocomplete="off">
+                    <div class="invalid-feedback error-text subtitle_error"></div>
+                    @error('subtitle')
+                      <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
+                  </div>
+                  <div class="form-group">
+                    <label for="сontent_list" class="form-control-label">Content list:</label>
+                    <select class="form-select" id="сontent_list" name="сontent_list[]" multiple data-allow-new="true">
+                      <option selected disabled hidden value="">Choose a content...</option>
+                    </select>
+                    <div class="invalid-feedback">Please select a valid content.</div>
+                    <div class="invalid-feedback error-text сontent_list_error"></div>
+                    @error('сontent_list')
+                      <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
+                  </div>
+                  <div class="form-group">
+                    <label for="extra_сontent_list" class="form-control-label">Extra content list:</label>
+                    <select class="form-select" id="extra_сontent_list" name="extra_сontent_list[]" multiple data-allow-new="true">
+                      <option selected disabled hidden value="">Choose a content...</option>
+                    </select>
+                    <div class="invalid-feedback">Please select a valid content.</div>
+                    <div class="invalid-feedback error-text extra_сontent_list_error"></div>
+                    @error('extra_сontent_list')
+                      <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="preview">Area to upload post preview:</label>
+                  <input type="file" name="preview" id="preview" hidden="hidden" autocomplete="off">
+                  <div class="invalid-feedback error-text preview_error"></div>
+                  @error('preview')
                     <div class="invalid-feedback d-block">{{ $message }}</div>
                   @enderror
                 </div>
@@ -109,7 +160,10 @@
     </div>
   </div>
 
-  {{ HTML::script('/admin/js/packages/create_package.js') }}
+  <script type="module">
+  </script>
+
+  {{ HTML::script('/admin/js/packages/create_package.js', ['type' => 'module']) }}
   {{ HTML::script('/admin/js/ajax-form.js') }}
 
 @endsection

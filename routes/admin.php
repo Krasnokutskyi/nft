@@ -67,7 +67,16 @@ Route::middleware("auth:admin")->group(function() {
   Route::post('/admin/content/downloads/files/delete/{file_id}/', [App\Http\Controllers\Admin\Downloads\FilesController::class, 'deleteAction'])->name('downloads.files.deleteAction');
 
   // Calendar
-  Route::get('/admin/content/calendar/', [App\Http\Controllers\Admin\Calendar\CalendarController::class, 'index'])->name('calendar.show');
+  Route::get('/admin/content/calendar/', [App\Http\Controllers\Admin\Calendar\CalendarController::class, 'calendar'])->name('calendar');
+  Route::post('/admin/content/calendar/add/', [App\Http\Controllers\Admin\Calendar\CalendarController::class, 'addScheduleAction'])->name('calendar.addAction');
+
+  // Market Activity
+  Route::get('/admin/content/market-activity/', [App\Http\Controllers\Admin\MarketActivity\MarketActivityController::class, 'index'])->name('marketActivity');
+  Route::post('/admin/content/market-activity/parser/', [App\Http\Controllers\Admin\MarketActivity\MarketActivityController::class, 'parserAction'])->name('marketActivity.parser');
+  Route::post('/admin/content/market-activity/sortable/', [App\Http\Controllers\Admin\MarketActivity\MarketActivityController::class, 'sortableAction'])->name('marketActivity.sortableAction');
+  Route::get('/admin/content/market-activity/edit/{item_id}', [App\Http\Controllers\Admin\MarketActivity\MarketActivityController::class, 'edit'])->name('marketActivity.edit');
+  Route::post('/admin/content/market-activity/edit/{item_id}', [App\Http\Controllers\Admin\MarketActivity\MarketActivityController::class, 'editAction'])->name('marketActivity.editAction');
+  Route::post('/admin/content/market-activity/delete/{item_id}', [App\Http\Controllers\Admin\MarketActivity\MarketActivityController::class, 'deleteAction'])->name('marketActivity.delete');
 
   // Packages
   Route::get('/admin/packages/', [App\Http\Controllers\Admin\PackagesController::class, 'packages'])->name('packages');

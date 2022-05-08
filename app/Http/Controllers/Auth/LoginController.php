@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Auth\LoginForm;
+use App\Helpers\Redirect\RedirectByContentHelper;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -13,7 +15,12 @@ class LoginController extends Controller
     $validated = $request->safe()->only(['email', 'password']);
 
     if(auth("web")->attempt($validated, true)) {
-      return response()->json(['redirect' => route("blog.posts")]);
+
+      $redirect_to = User::with('packages')->find(auth("web")->id())->packages->first()->redirect_content;
+
+      return response()->json([
+        'redirect' => RedirectByContentHelper::getPath($redirect_to)
+      ]);
     }
 
     return response()->json([

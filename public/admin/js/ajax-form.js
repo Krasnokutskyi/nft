@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   $(function(){
     $('.ajax-form').on('submit', function(e){
 

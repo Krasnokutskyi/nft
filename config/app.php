@@ -180,6 +180,7 @@ return [
          */
         Collective\Html\HtmlServiceProvider::class,
         Propaganistas\LaravelPhone\PhoneServiceProvider::class,
+        Dirape\Token\TokenServiceProvider::class,
     ],
 
     /*
@@ -239,6 +240,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'HTML' => Collective\Html\HtmlFacade::class,
         'HTML' => Collective\Html\HtmlFacade::class,
+        'Token'=>\Dirape\Token\Facades\Facade::class,
     ],
 
 ];

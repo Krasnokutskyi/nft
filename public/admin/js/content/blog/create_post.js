@@ -68,6 +68,8 @@ document.addEventListener("DOMContentLoaded", () => {
     var html = quill.root.innerHTML;
     if (quill.getText().trim().length > 0 || quill.getContents()['ops'].length > 1) {
       $('.create_post-form').find('textarea[name="text"]').val(html);
+    } else {
+      $('form').find('textarea[name="text"]').val('');
     }
   });
 

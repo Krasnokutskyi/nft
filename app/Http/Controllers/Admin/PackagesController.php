@@ -29,8 +29,13 @@ class PackagesController extends AdminController
   public function createAction(CreatePackageForm $request)
   {
     $validated = $request->safe()->only([
-      'name', 'price', 'content', 'redirect_content'
+      'name', 'price', 'content', 'redirect_content',
+      'discount', 'subtitle', 'preview',
+      'extra_сontent_list', 'сontent_list',
     ]);
+
+    $validated['preview'] = $request->file('preview')->hashName();
+    $request->file('preview')->store('images/packages/preview', 'public');
 
     $packages_by_position = Packages::orderBy('position', 'desc')->get();
     if ($packages_by_position->count() > 0) {
@@ -40,7 +45,8 @@ class PackagesController extends AdminController
     }
 
     $validated['content'] = implode(',', $validated['content']);
-    $validated['redirect_content'] = implode(',', $validated['redirect_content']);
+    $validated['сontent_list'] = (array_key_exists('сontent_list', $validated)) ? implode(',', $validated['сontent_list']) : null;
+    $validated['extra_сontent_list'] = (array_key_exists('extra_сontent_list', $validated)) ? implode(',', $validated['extra_сontent_list']): null;
 
     Packages::create($validated);
 
@@ -55,6 +61,8 @@ class PackagesController extends AdminController
 
       $package = $package->first();
       $package->content = explode(',', $package->content);
+      $package->сontent_list = explode(',', $package->сontent_list);
+      $package->extra_сontent_list = explode(',', $package->extra_сontent_list);
 
       return view('admin.packages.edit_package', compact('package'));
     }
@@ -71,12 +79,34 @@ class PackagesController extends AdminController
       $package = $package->first();
 
       $validated = $request->safe()->only([
-        'name', 'price', 'content', 'redirect_content'
+        'name', 'price', 'content', 'redirect_content',
+        'discount', 'subtitle', 'preview',
+        'extra_сontent_list', 'сontent_list',
       ]);
       
+      $preview = $request->file('preview');
+      if (!empty($preview))     {
+        $validated['preview'] = $preview->hashName();
+        $preview->store('images/packages/preview', 'public');
+        if (Packages::where('preview', '=', $package->preview)->count() <= 1) {
+          Storage::disk('public')->delete('images/packages/preview' . $package->preview);
+        }
+      } else {
+        $validated['preview'] = $package->preview;
+        if (trim($request->get('remote_preview')) === $package->preview) {
+          $validator = Validator::make($request->all(), ['preview' => 'required']);
+          if ($validator->fails()) {
+            return response()->json([
+              'status' => false,
+              'errors' => $validator->errors(),
+            ]);
+          }
+        }
+      }
 
       $validated['content'] = implode(',', $validated['content']);
-      $validated['redirect_content'] = implode(',', $validated['redirect_content']);
+      $validated['сontent_list'] = (array_key_exists('сontent_list', $validated)) ? implode(',', $validated['сontent_list']) : null;
+      $validated['extra_сontent_list'] = (array_key_exists('extra_сontent_list', $validated)) ? implode(',', $validated['extra_сontent_list']): null;
 
       $package->update($validated);
 
@@ -96,14 +126,16 @@ class PackagesController extends AdminController
     $package_id = intval($request->get('package_id'));
     $position_last_package = Packages::orderBy('position', 'desc')->first()->position;
 
-    Packages::where('position', '=', $old_index)->where('id', '=', $package_id)->update(['position' => $new_index]);
+    Packages::where('id', '=', $package_id)->update(['position' => $new_index]);
 
     if ($old_index === 0) {
       Packages::where('position', '<=', $new_index)->where('id', '!=', $package_id)->decrement('position', 1);
-    } elseif ($new_index === $position_last_package) {
+    } elseif($old_index < $new_index) {
+      Packages::where('position', '<=', $new_index)->where('position', '>=', $old_index)->where('id', '!=', $package_id)->decrement('position', 1);
+    } elseif ($old_index === $position_last_package) {
       Packages::where('position', '>=', $new_index)->where('id', '!=', $package_id)->increment('position', 1);
-    } else {
-      Packages::where('position', '=', $new_index)->where('id', '!=', $package_id)->update(['position' => $old_index]);
+    } elseif ($old_index > $new_index) {
+      Packages::where('position', '>=', $new_index)->where('position', '<=', $old_index)->where('id', '!=', $package_id)->increment('position', 1);
     }
   }
 

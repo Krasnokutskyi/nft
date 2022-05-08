@@ -6,8 +6,7 @@
             <li><a href="{{ route('downloads.files') }}">Downloads</a></li>
             <li><a href="#">Calendar</a></li>
             <li><a href="{{ route('blog.posts') }}">Blog</a></li>
-            <li><a href="#">Market Activity</a></li>
-            <li><a href="#">Contacts</a></li>
+            <li><a href="{{ route('marketActivity') }}">Market Activity</a></li>
         </ul>
     </nav>
     <label class="menu__btn" for="menu__toggle">
@@ -24,8 +23,7 @@
             <li><a href="{{ route('downloads.files') }}">Downloads</a></li>
             <li><a href="#">Calendar</a></li>
             <li><a href="{{ route('blog.posts') }}">Blog</a></li>
-            <li><a href="#">Market Activity</a></li>
-            <li><a href="#">Contacts</a></li>
+            <li><a href="{{ route('marketActivity') }}">Market Activity</a></li>
         </ul>
     </div>
 

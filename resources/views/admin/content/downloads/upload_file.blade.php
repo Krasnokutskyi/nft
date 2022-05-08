@@ -37,7 +37,7 @@
             <div class="card-body">
               <form method="POST" preloader-ajax-form=".card" class="ajax-form custom-form" enctype="multipart/form-data">
                 @csrf
-                <div class="form-group has-validation">
+                <div class="form-group">
                   <label for="title-input" class="form-control-label">Title:</label>
                   <input class="form-control" type="text" id="title-input" name="title"  autocomplete="off" required>
                   <div class="invalid-feedback error-text title_error"></div>
@@ -112,9 +112,5 @@
 
   {{ HTML::script('admin/js/content/downloads/upload_file.js') }}
   {{ HTML::script('admin/js/ajax-form.js') }}
-
-  <script type="text/javascript">
-
-  </script>
 
 @endsection

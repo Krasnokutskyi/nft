@@ -40,9 +40,10 @@
               <table class="table align-items-center table-flush categories-table">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col" class="sort" data-sort="name">Name</th>
-                    <th scope="col" class="sort" data-sort="name" style="width: 10%">Price</th>
-                    <th scope="col" style="width: 5%"></th>
+                    <th scope="col">Name</th>
+                    <th scope="col" class="text-center" width="10%">Users</th>
+                    <th scope="col" class="text-center" width="10%">Price</th>
+                    <th scope="col" width="5%"></th>
                   </tr>
                 </thead>
                 <tbody class="list" data-url_sortable="{{ route('admin.packages.sortableAction') }}">
@@ -51,12 +52,15 @@
                       <td class="budget">
                         {{ $package->name }}
                       </td>
-                      <td class="budget">
-                        {{ $package->price }}
+                      <td class="budget text-center">
+                        {{ $package->users()->count() }}
+                      </td>
+                      <td class="budget text-center">
+                        {{ (floatval($package->discount) == 0) ? $package->price : $package->discount }}
                       </td>
                       <td class="text-right">
                         <div class="dropdown">
-                          <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <a class="btn btn-sm btn-icon-only" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v"></i>
                           </a>
                           <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">

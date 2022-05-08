@@ -97,13 +97,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#{{-- {{ route('admin.calendar.show') }} --}}">
+                <a class="nav-link" href="{{ route('admin.calendar') }}">
                   <i class="fas fa-calendar-alt text-blue"></i>
                   Calendar
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('admin.marketActivity') }}">
                   <i class="fas fa-chart-line text-blue"></i>
                   Market Activity
                 </a>

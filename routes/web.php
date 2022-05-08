@@ -22,6 +22,7 @@ Route::middleware("guest:web")->group(function() {
   // Auth
   Route::post('/login/', [\App\Http\Controllers\Auth\LoginController::class, 'loginAction'])->name('loginAction');
   Route::post('/register/', [\App\Http\Controllers\Auth\RegisterController::class, 'registerAction'])->name('registerAction');
+  Route::post('/register/pay/', [\App\Http\Controllers\Auth\RegisterController::class, 'registerActionPay'])->name('registerAction.pay');
 });
 
 Route::middleware(["auth:web"])->group(function() {
@@ -46,4 +47,10 @@ Route::middleware(["auth:web"])->group(function() {
   Route::get('/storage/content/downloads/preview/{image}/', [App\Http\Controllers\Downloads\FilesController::class, 'showFilePreview'])->name('storage.content.downloads.preview');
   Route::get('/storage/content/downloads/files/', [App\Http\Controllers\Downloads\FilesController::class, 'downloadAllFiles'])->name('storage.content.downloads.allFiles');
   Route::get('/storage/content/downloads/files/{file}/', [App\Http\Controllers\Downloads\FilesController::class, 'downloadFile'])->name('storage.content.downloads.file');
+
+  // Calendar
+  Route::get('/calendar/', [App\Http\Controllers\Calendar\CalendarController::class, 'calendar'])->name('calendar');
+  
+  // Market Activity
+  Route::get('/market-activity/', [App\Http\Controllers\MarketActivity\MarketActivityController::class, 'index'])->name('marketActivity');
 });

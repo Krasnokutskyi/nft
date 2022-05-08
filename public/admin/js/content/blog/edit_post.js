@@ -69,6 +69,8 @@ document.addEventListener("DOMContentLoaded", () => {
         multiLineParagraph: false
       });
       $('.edit_post-form').find('textarea[name="text"]').val(qdc.convert());
+    } else {
+      $('form').find('textarea[name="text"]').val('');
     }
   });
 

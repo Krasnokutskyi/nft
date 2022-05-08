@@ -98,12 +98,15 @@
     align-items: center;
     margin-left: 0.5rem;
     font-weight: bold;
+    margin-right: 5px;
 }
 
 .market__item-floor span img {
     position: relative;
     margin-right: 3px;
     top: -2px;
+    max-height: 17px;
+    max-width: 17px;
 }
 
 .market__item-activity {
@@ -136,6 +139,8 @@
     position: relative;
     margin-right: 3px;
     top: -3px;
+    max-width: 17px;
+    max-height: 17px;
 }
 
 .box_button {

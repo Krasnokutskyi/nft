@@ -1,3 +1,60 @@
+/* Colors */
+a, .btn-neutral
+{
+	color: #007bff;
+}
+a:hover 
+{
+  color: #0056b3;
+}
+.form-control:focus
+{
+	border-color: #80bdff;
+}
+.bg-primary
+{
+	background-color: rgb(13, 110, 253) !important;
+}
+.btn-primary
+{
+	background-color: rgb(13, 110, 253);
+	border-color: rgb(13, 110, 253);
+}
+.btn-primary:hover
+{
+	background-color: #0056b3;
+	border-color: #0056b3;
+}
+.bg-gradient-primary
+{
+	background: linear-gradient(87deg, #5e72e4 0, rgb(13, 110, 253) 100%) !important;
+}
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::after
+{
+	border-radius: .25rem;
+	background-color: rgb(13, 110, 253);
+  background-image: url('data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'8\' height=\'8\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%23fff\' d=\'M6.564.75l-3.59 3.612-1.538-1.55L0 4.26l2.974 2.99L8 2.193z\'/%3e%3c/svg%3e');
+}
+.jFiler-input-choose-btn.blue
+{
+	background-color: rgb(13, 110, 253);
+	border-color: rgb(13, 110, 253);
+	color: #fff;
+}
+.jFiler-input-choose-btn.blue:hover
+{
+	background-color: #0056b3;
+	border-color: #0056b3;
+}
+.swal2-styled.swal2-confirm
+{
+	background-color: rgb(13, 110, 253) !important;
+}
+.swal2-styled.swal2-confirm:focus
+{
+	box-shadow: 0 0 0 3px rgba(13, 110, 253, .5);
+}
+
 /* Custom form */
 .custom-form .error-text
 {
@@ -27,6 +84,11 @@
 {
 	cursor: pointer;
 }
+.custom-form .text-editor-container .ql-snow .ql-editor,
+.custom-form .text-editor-container .ql-snow .ql-editor
+{
+	min-height: 350px;
+}
 .custom-form .ql-editor iframe 
 {
   pointer-events: none;
@@ -35,21 +97,79 @@
 {
 	border: 1px solid;
 }
-
-/* Create and edit post */
-.ctreate_post .create_post-form .text-editor-container .ql-snow .ql-editor,
-.edit_post .edit_post-form .text-editor-container .ql-snow .ql-editor
-{
-	min-height: 350px;
-}
-.edit_post .jFiler-items-grid .jFiler-item .jFiler-item-container
+.custom-form .jFiler-items-grid .jFiler-item .jFiler-item-container
 {
 	margin-bottom: 5px;
 }
-.ctreate_post .create_post-form .ql-editor iframe,
-.edit_post .edit_post-form .ql-editor iframe
+.custom-form .jFiler-items-grid .jFiler-item .jFiler-item-container .jFiler-item-thumb .jFiler-item-thumb-image
 {
-	pointer-events: none;
+	display: inline-flex;
+	align-content: center;
+	justify-content: center;
+	max-width: 100%;
+	max-height: 100%;
+}
+.custom-form .jFiler-items-grid .jFiler-item .jFiler-item-container .jFiler-item-thumb .jFiler-item-thumb-image image
+{
+	display: inline-block;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.custom-form .form-control .badge
+{
+	background: rgb(13, 110, 253);
+	display: inline-flex;
+	align-items: center;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+	padding: 0.5em 0.85em;
+	margin: 0.1rem 0rem;
+	text-transform: none;
+	font-size: 0.8em;
+	font-weight: 700;
+	line-height: 1;
+	color: #fff;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: .25rem;
+}
+.custom-form .form-control .badge .close
+{
+	margin-right: 0px !important;
+	margin-left: 7px;
+	line-height: 1;
+	padding: 0;
+	border: 0;
+	background-color: transparent;
+	appearance: none;
+}
+.custom-form .form-control .badge .close > span:not(.sr-only)
+{
+	display: inline;
+	transition: all .15s ease;
+	color: rgba(0, 0, 0, .6);
+	border-radius: 50%;
+	background-color: transparent;
+	font-size: 1.25rem;
+	line-height: 17px;
+}
+.custom-form div.form-control.dropdown
+{
+	padding: 0.65rem 0.75rem;
+	cursor: text;
+}
+.custom-form div.form-control.dropdown input
+{
+	color: #212529;
+	font-size: 1rem;
+	font-weight: 400;
+}
+.custom-form div.form-control.dropdown input:placeholde
+{
+	color: #6c757d;
+  opacity: 1;
 }
 
 /* Edit video */
@@ -109,8 +229,21 @@
 	color: inherit !important;
 }
 
-/* Packages */
-.table-packages tbody.list td
+/* Table */
+table .preview_item-table
+{
+	max-width: 10%;
+	width: 100%;
+}
+table .preview_item-table img
+{
+	display: inline-block;
+	width: auto;
+	max-width: 80px;
+	max-height: 100px;
+	border-radius: 5px;
+}
+table tbody.ui-sortable tr td
 {
 	width: inherit;
 	cursor: pointer;

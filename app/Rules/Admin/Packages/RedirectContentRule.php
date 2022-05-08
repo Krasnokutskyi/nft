@@ -15,7 +15,7 @@ class RedirectContentRule implements Rule
    */
   public function __construct($content)
   {
-    $this->content = (array($content)) ? $content : [];
+    $this->content = (is_array($content)) ? $content : [$content];
   }
 
   /**
@@ -27,22 +27,7 @@ class RedirectContentRule implements Rule
    */
   public function passes($attribute, $value)
   {
-    if (!is_array($value)) { $value = array($value); }
-
-    foreach ($value as $content) {
-
-      if (!is_string($content) and !is_numeric($content)) {
-        return false;
-      }
-
-      if (!in_array($content, $this->content, true)) {
-        return false;
-      }
-    }
-
-    return true;
-
-    return false;
+    return (in_array($value, $this->content, true)) ? true : false;
   }
 
   /**

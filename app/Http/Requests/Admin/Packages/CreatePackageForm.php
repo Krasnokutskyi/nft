@@ -26,10 +26,15 @@ class CreatePackageForm extends JsonFormRequest
   public function rules()
   {
     return [
-      'name' => ['required', 'string', 'max:255', 'unique:packages'],
+      'name' => ['required', 'string', 'max:100', 'unique:packages'],
       'price' => ['required', 'numeric', 'min: 0.01'],
+      'discount' => ['numeric', 'min: 0', 'lt:price'],
       'content' => ['required', 'array', Rule::in(['videos', 'blog', 'downloads', 'calendar', 'market activity'])],
-      'redirect_content' => ['required', 'array', Rule::in(['videos', 'blog', 'downloads', 'calendar', 'market activity']), new RedirectContentRule($this->get('content'))],
+      'redirect_content' => ['required', 'string', new RedirectContentRule($this->get('content'))],
+      'preview' => ['required', 'image'],
+      'subtitle' => ['string', 'nullable', 'max:200'],
+      'сontent_list' => ['array', 'nullable'],
+      'extra_сontent_list' => ['array', 'nullable'],
     ];
   }
 }

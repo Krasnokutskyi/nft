@@ -29,7 +29,7 @@ class RegisterUserForm extends JsonFormRequest
       'last_name' => ['required', 'string', 'max: 255'],
       'phone' => ['required', 'phone:AUTO', 'unique:users'],
       'email' => ['required', 'string', 'email', 'max:535', 'unique:users'],
-      'password' => ['required', 'string', Password::min(6)->letters()->numbers()->mixedCase()->uncompromised(), 'max:535'],
+      'password' => ['required', 'string', Password::min(6)->letters()->numbers()->mixedCase()->uncompromised(), 'max:535', 'confirmed'],
       'package' => ['required', 'string', 'exists:packages,id'],
     ];
   }

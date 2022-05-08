@@ -15,8 +15,13 @@ class Packages extends Model
     "position",
     "name",
     "price",
+    "discount",
     "content",
     "redirect_content",
+    "subtitle",
+    "сontent_list",
+    "extra_сontent_list",
+    "preview",
   ];
 
   public function users()

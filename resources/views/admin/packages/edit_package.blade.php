@@ -33,7 +33,7 @@
               <h3 class="mb-0">Edit package</h3>
             </div>
             <div class="card-body">
-              <form method="POST" preloader-ajax-form=".card" class="ajax-form custom-form">
+              <form method="POST" preloader-ajax-form=".card" class="ajax-form custom-form" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                   <label for="name-input" class="form-control-label">Name:</label>
@@ -48,6 +48,14 @@
                   <input class="form-control" type="text" id="price-input" name="price" autocomplete="off" required value="{{ $package->price }}" placeholder="{{ $package->price }}">
                   <div class="invalid-feedback error-text name_error"></div>
                   @error('price')
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <label for="discount-input" class="form-control-label">Discount (*New price):</label>
+                  <input class="form-control" type="number" id="discount-input" name="discount" autocomplete="off" value="{{ $package->discount }}" placeholder="{{ $package->discount }}">
+                  <div class="invalid-feedback error-text discount_error"></div>
+                  @error('discount')
                     <div class="invalid-feedback d-block">{{ $message }}</div>
                   @enderror
                 </div>
@@ -90,6 +98,66 @@
                     <div class="invalid-feedback d-block">{{ $message }}</div>
                   @enderror
                 </div>
+                <div class="form-group">
+                  <label for="checkbox_redirect_content" class="form-control-label">After registration, redirect a user to:</label>
+                  <select name="redirect_content" class="form-control" id="checkbox_redirect_content" autocomplete="off">
+                    <option selected value="{{ $package->redirect_content }}"></option>
+                  </select>
+                  <div class="invalid-feedback error-text redirect_content_error"></div>
+                  @error('redirect_content')
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="description border-bottom mb-3">
+                  <div class="page-header border-bottom">
+                    <h3>Description</h3>      
+                  </div>
+                  <div class="form-group mt-3">
+                    <label for="subtitle" class="form-control-label">Subtitle:</label>
+                    <input class="form-control" type="text" name="subtitle" id="subtitle" autocomplete="off" value="{{ $package->subtitle }}" placeholder="{{ $package->subtitle }}">
+                    <div class="invalid-feedback error-text subtitle_error"></div>
+                    @error('subtitle')
+                      <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
+                  </div>
+                  <div class="form-group">
+                    <label for="сontent_list" class="form-control-label">Content list:</label>
+                    <select class="form-select" id="сontent_list" name="сontent_list[]" multiple autocomplete="off" data-allow-new="true">
+                      <option selected disabled hidden value="">Choose a content...</option>
+                      @foreach ($package->сontent_list as $key => $value)
+                        <option selected="selected" data-init="{{ $value }}" value="{{ $value }}">{{ $value }}</option>
+                      @endforeach
+                    </select>
+                    <div class="invalid-feedback">Please select a valid content.</div>
+                    <div class="invalid-feedback error-text сontent_list_error"></div>
+                    @error('сontent_list')
+                      <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
+                  </div>
+                  <div class="form-group">
+                    <label for="extra_сontent_list" class="form-control-label">Extra content list:</label>
+                    <select class="form-select" id="extra_сontent_list" name="extra_сontent_list[]" multiple data-allow-new="true" autocomplete="off">
+                      <option selected disabled hidden value="">Choose a content...</option>
+                      @foreach ($package->extra_сontent_list as $key => $value)
+                        <option selected="selected" value="{{ $value }}">{{ $value }}</option>
+                      @endforeach
+                    </select>
+                    <div class="invalid-feedback">Please select a valid content.</div>
+                    <div class="invalid-feedback error-text extra_сontent_list_error"></div>
+                    @error('extra_сontent_list')
+                      <div class="invalid-feedback d-block">{{ $message }}</div>
+                    @enderror
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="preview">Area to upload package preview:</label>
+                  <input type="text" name="remote_preview" hidden="hidden" autocomplete="off">
+                  <input type="file" name="preview" id="preview" hidden="hidden" autocomplete="off">
+                  <div class="invalid-feedback error-text preview_error"></div>
+                  @error('preview')
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                  @enderror
+                </div>
                 <div class="text-right">
                   <button type="submit" class="btn btn-success mt-4">Save</button>
                 </div>
@@ -101,6 +169,16 @@
     </div>
   </div>
 
+  <script type="text/javascript">
+    var preview = [{
+      'name': '{{ $package->preview }}',
+      'size': '{{ Storage::disk('public')->size('/images/packages/preview/' . $package->preview) }}',
+      'type': '{{ Storage::disk('public')->mimeType('/images/packages/preview/' . $package->preview) }}',
+      'file': '{{ '/uploads/images/packages/preview/' . $package->preview }}'
+    }];
+  </script>
+
+  {{ HTML::script('/admin/js/packages/edit_package.js', ['type' => 'module']) }}
   {{ HTML::script('/admin/js/ajax-form.js') }}
 
 @endsection

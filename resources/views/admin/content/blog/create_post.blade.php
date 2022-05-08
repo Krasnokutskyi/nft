@@ -35,7 +35,7 @@
               <h3 class="mb-0">Create post</h3>
             </div>
             <div class="card-body">
-              <form method="POST" preloader-ajax-form=".card" class="ajax-form create_post-form custom-form"  enctype="multipart/form-data">
+              <form method="POST" preloader-ajax-form=".card" class="ajax-form create_post-form custom-form" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group has-validation">
                   <label for="title-input" class="form-control-label">Title:</label>
@@ -132,12 +132,6 @@
       </div>
     </div>
   </div>
-
-  <style type="text/css">
-    .ql-editor iframe {
-      pointer-events: none;
-    }
-  </style>
 
   {{ HTML::script('admin/js/content/blog/create_post.js') }}
   {{ HTML::script('admin/js/ajax-form.js') }}

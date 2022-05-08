@@ -76,161 +76,60 @@
             </div>
         </div>
         <div class="apes"></div>
-        <div class="packages" id="packages">
-            <div class="wrapper">
-                <h2>Take a <span class="u5">look</span> and <span class="u6">choose</span> one</h2>
-                <p class="packages__subtitle">Of the four packages that ideally fit your needs, level of knowledge, and requirements.</p>
-                <div class="packages__list">
-                    <div class="packages__item packages__item_beginner">
-                        <div class="packages__img">
-                            <img src="/elitenftcourse/images/icon-beginner.png" alt="Beginner">
-                        </div>
-                        <div class="packages__info">
-                            <div class="packages__title">Beginner</div>
-                            <div class="packages__target">For those who want to know what is NFT.</div>
-                            <div class="packages__content">
-                                <span>Video lessons</span>
-                                <span>Presentations</span>
-                                <span>eBook</span>
-                                <span>Crypto Calendar</span>
-                                <span>Knowledge Checks</span>
-                                <span>Personal tracking sheet</span>
-                                <span>Crypto Stacking Fundamentals</span>
-                                <span>Support in entering NFT world</span>
-                                <span>Metaverse introduction</span>
-                                <span>Trading setup</span>
+
+        @if ($packages->count() > 0)
+            <div class="packages" id="packages">
+                <div class="wrapper">
+                    <h2>Take a <span class="u5">look</span> and <span class="u6">choose</span> one</h2>
+                    <p class="packages__subtitle">Of the four packages that ideally fit your needs, level of knowledge, and requirements.</p>
+                    <div class="packages__list">
+
+                        @foreach ($packages as $package)
+                            <div class="packages__item packages__item_beginner">
+                                <div class="packages__img">
+                                    <img src="/uploads/images/packages/preview/{{ $package->preview }}" alt="{{ $package->name }}">
+                                </div>
+                                <div class="packages__info">
+                                    <div class="packages__title">{{ $package->name }}</div>
+                                    @if (!empty($package->subtitle))
+                                        <div class="packages__target">{{ $package->subtitle }}</div>
+                                    @endif
+
+                                    @php
+                                        $сontent_list = explode(',', $package->сontent_list);
+                                        $extra_сontent_list = explode(',', $package->extra_сontent_list);
+                                    @endphp
+                                    @if (!empty($сontent_list))
+                                        <div class="packages__content">
+                                            @foreach ($сontent_list as $item)
+                                                <span>{{ $item }}</span>
+                                            @endforeach
+                                        </div>
+                                    @endif
+                                    @if (!empty($extra_сontent_list))
+                                        <div class="packages__content-extra">
+                                            @foreach ($extra_сontent_list as $item)
+                                                <span>{{ $item }}</span>
+                                            @endforeach
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="packages__price">
+                                    <div class="packages__price-current">${{ (floatval($package->discount) == 0) ? $package->price : $package->discount }}</div>
+                                    <div>
+                                        <a class="btn btn_small" data-package_id = "{{ $package->id }}" href="#buy_package">Purchase</a>
+                                    </div>
+                                    @if (!empty($package->discount))
+                                        <div class="packages__price-old">Old Price ${{ $package->price }}</div>
+                                    @endif
+                                </div>
                             </div>
-                            <div class="packages__content-extra">
-                                <span>EXTRA</span>
-                                <span>NFT Reward</span>
-                                <span>Intro session with account manager</span>
-                            </div>
-                        </div>
-                        <div class="packages__price">
-                            <div class="packages__price-current">$235</div>
-                            <div>
-                                <a class="btn btn_small" href="#">Purchase</a>
-                            </div>
-                            <div class="packages__price-old">Old Price $250</div>
-                        </div>
+                        @endforeach
+
                     </div>
-                    <!--/packages__item beginner-->
-                    <div class="packages__item packages__item_inter">
-                        <div class="packages__img">
-                            <img src="/elitenftcourse/images/icon-inter.png" alt="inter">
-                        </div>
-                        <div class="packages__info">
-                            <div class="packages__title">Intermediate</div>
-                            <div class="packages__target">For those who want to get more info about NFT markets.</div>
-                            <div class="packages__content">
-                                <span>Video lessons</span>
-                                <span>Presentations</span>
-                                <span>eBook</span>
-                                <span>Crypto Calendar</span>
-                                <span>Knowledge Checks</span>
-                                <span>Personal tracking sheet</span>
-                                <span>Crypto Stacking Fundamentals</span>
-                                <span>Support in entering NFT world</span>
-                                <span>Metaverse introduction</span>
-                                <span>Trading setup</span>
-                            </div>
-                            <div class="packages__content-extra content-inter">
-                                <span>EXTRA</span>
-                                <span>NFT Reward</span>
-                                <span>Daily Market Research</span>
-                                <span>Market Signals</span>
-                                <span>5 sessions with account manager</span>
-                            </div>
-                        </div>
-                        <div class="packages__price">
-                            <div class="packages__price-current">$475</div>
-                            <div>
-                                <a class="btn btn_small" href="#">Purchase</a>
-                            </div>
-                            <div class="packages__price-old">Old Price $550</div>
-                        </div>
-                    </div>
-                    <!--/packages__item Intermediate-->
-                    <div class="packages__item packages__item_trade">
-                        <div class="packages__img">
-                            <img src="/elitenftcourse/images/icon-trade.png" alt="trade">
-                        </div>
-                        <div class="packages__info">
-                            <div class="packages__title">Trade</div>
-                            <div class="packages__target">For the people who wants to maximize opportunities and create consistent income.</div>
-                            <div class="packages__content">
-                                <span>Video lessons</span>
-                                <span>Presentations</span>
-                                <span>eBook</span>
-                                <span>Crypto Calendar</span>
-                                <span>Knowledge Checks</span>
-                                <span>Personal tracking sheet</span>
-                                <span>Crypto Stacking Fundamentals</span>
-                                <span>Support in entering NFT world</span>
-                                <span>Metaverse introduction</span>
-                                <span>Trading setup</span>
-                            </div>
-                            <div class="packages__content-extra purple">
-                                <span>EXTRA</span>
-                                <span>2 NFT Reward</span>
-                                <span>Daily Market Research</span>
-                                <span>Market Signals</span>
-                                <span>Account manager once a week</span>
-                                <span>Social trading track</span>
-                                <span>Pro trader 1on1 meeting</span>
-                            </div>
-                        </div>
-                        <div class="packages__price">
-                            <div class="packages__price-current">$950</div>
-                            <div>
-                                <a class="btn btn_small" href="#">Purchase</a>
-                            </div>
-                            <div class="packages__price-old">Old Price $1000</div>
-                        </div>
-                    </div>
-                    <!--/packages__item trade-->
-                    <div class="packages__item packages__item_elite">
-                        <div class="packages__img">
-                            <img src="/elitenftcourse/images/icon-elite.png" alt="elite">
-                        </div>
-                        <div class="packages__info">
-                            <div class="packages__title">Elite</div>
-                            <div class="packages__target">For those who wants to make big steps in investments yields and holding portfolios.</div>
-                            <div class="packages__content">
-                                <span>Video lessons</span>
-                                <span>Presentations</span>
-                                <span>eBook</span>
-                                <span>Crypto Calendar</span>
-                                <span>Knowledge Checks</span>
-                                <span>Personal tracking sheet</span>
-                                <span>Crypto Stacking Fundamentals</span>
-                                <span>Support in entering NFT world</span>
-                                <span>Metaverse introduction</span>
-                                <span>Trading setup</span>
-                            </div>
-                            <div class="packages__content-extra pink">
-                                <span>EXTRA</span>
-                                <span>Gold NFT Reward</span>
-                                <span>Daily Market Research</span>
-                                <span>Market Signals</span>
-                                <span>Account manager 24/5</span>
-                                <span>Social trading track</span>
-                                <span>Personal strategy build</span>
-                                <span>Pro trader monthly meeting</span>
-                            </div>
-                        </div>
-                        <div class="packages__price">
-                            <div class="packages__price-current">$1400</div>
-                            <div>
-                                <a class="btn btn_small" href="#">Purchase</a>
-                            </div>
-                            <div class="packages__price-old">Old Price $1500</div>
-                        </div>
-                    </div>
-                    <!--/packages__item elite-->
                 </div>
             </div>
-        </div>
+        @endif
 
         <div class="benefits">
             <div class="wrapper">
@@ -352,306 +251,55 @@
             </div>
         </div>
 
+        @if ($market_activity->count() > 0)
+            <div class="market" id="market">
+                <div class="wrapper">
+                    <h2><span class="u9">Market</span> Activity</h2>
+                    <p class="market__subtitle">While you are waiting for a miracle, others are raising money on successful collections. </p>
+                    <div class="market__list">
+                        <div class="row">
 
-        <div class="market" id="market">
-            <div class="wrapper">
-                <h2><span class="u9">Market</span> Activity</h2>
-                <p class="market__subtitle">While you are waiting for a miracle, others are raising money on successful collections. </p>
+                            @foreach ($market_activity as $key => $item)
+                                <div class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="market__item card">
+                                        <div class="market__item-number">{{ $loop->iteration }}</div>
+                                        <div class="market__item-pic">
+                                            <img src="/uploads/images/MarketActivity/preview/{{ $item->preview }}" alt="{{ $item->name }}">
+                                        </div>
+                                        <div class="market__item-data">
+                                            <div class="market__item-name">{{ $item->name }}</div>
+                                            <div class="market__item-floor">
+                                                Floor price:
+                                                <span>
+                                                    <img src="/uploads/images/MarketActivity/icons_coin/{{ $item->icon_coin }}" alt="Floor price">
+                                                    {{ number_format(floatval($item->floor_price), 2, '.', ',') }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="market__item-activity">
+                                            <div class="market__item-state 
+                                                @if (floatval($item->shift) > 0)
+                                                    market__item-state_up
+                                                @elseif (floatval($item->shift) < 0)
+                                                    market__item-state_down
+                                                @endif
+                                            ">
+                                                {{ number_format(floatval($item->shift), 2, '.', ',') }}%
+                                            </div>
+                                            <div class="market__item-volume">
+                                                <img src="/uploads/images/MarketActivity/icons_coin/{{ $item->icon_coin }}" alt="Volume"> {{ number_format(intval($item->volume), 0, ',', ',') }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
 
-                <div class="market__list">
-                    <div class="row">
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="market__item card">
-                                <div class="market__item-number">1</div>
-                                <div class="market__item-pic">
-                                    <img src="/elitenftcourse/images/icon-market.png" alt="">
-                                </div>
-                                <div class="market__item-data">
-                                    <div class="market__item-name">Smokin</div>
-                                    <div class="market__item-floor">
-                                        Floor price:
-                                        <span>
-                                            <img src="/elitenftcourse/images/icon-eth.svg" alt="Floor price">
-                                            2.5
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="market__item-activity">
-                                    <div class="market__item-state">—</div>
-                                    <div class="market__item-volume">
-                                        <img src="/elitenftcourse/images/icon-eth.svg" alt="Volume"> 5,379,151
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="market__item">
-                                <div class="market__item-number">2</div>
-                                <div class="market__item-pic">
-                                    <img src="/elitenftcourse/images/icon-market.png" alt="">
-                                </div>
-                                <div class="market__item-data">
-                                    <div class="market__item-name">Smokin</div>
-                                    <div class="market__item-floor">
-                                        Floor price:
-                                        <span>
-                                            <img src="/elitenftcourse/images/icon-eth.svg" alt="Floor price">
-                                            2.5
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="market__item-activity">
-                                    <div class="market__item-state market__item-state_up">+35.42%</div>
-                                    <div class="market__item-volume">
-                                        <img src="/elitenftcourse/images/icon-eth.svg" alt="Volume"> 5,379,151
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="market__item">
-                                <div class="market__item-number">3</div>
-                                <div class="market__item-pic">
-                                    <img src="/elitenftcourse/images/icon-market.png" alt="">
-                                </div>
-                                <div class="market__item-data">
-                                    <div class="market__item-name">Smokin</div>
-                                    <div class="market__item-floor">
-                                        Floor price:
-                                        <span>
-                                            <img src="/elitenftcourse/images/icon-eth.svg" alt="Floor price">
-                                            2.5
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="market__item-activity">
-                                    <div class="market__item-state market__item-state_down">-35.43%</div>
-                                    <div class="market__item-volume">
-                                        <img src="/elitenftcourse/images/icon-eth.svg" alt="Volume"> 5,379,151
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="market__item">
-                                <div class="market__item-number">4</div>
-                                <div class="market__item-pic">
-                                    <img src="/elitenftcourse/images/icon-market.png" alt="">
-                                </div>
-                                <div class="market__item-data">
-                                    <div class="market__item-name">Smokin</div>
-                                    <div class="market__item-floor">
-                                        Floor price:
-                                        <span>
-                                            <img src="/elitenftcourse/images/icon-eth.svg" alt="Floor price">
-                                            2.5
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="market__item-activity">
-                                    <div class="market__item-state market__item-state_up">—</div>
-                                    <div class="market__item-volume">
-                                        <img src="/elitenftcourse/images/icon-eth.svg" alt="Volume"> 5,379,151
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="market__item">
-                                <div class="market__item-number">5</div>
-                                <div class="market__item-pic">
-                                    <img src="/elitenftcourse/images/icon-market.png" alt="">
-                                </div>
-                                <div class="market__item-data">
-                                    <div class="market__item-name">Smokin</div>
-                                    <div class="market__item-floor">
-                                        Floor price:
-                                        <span>
-                                            <img src="/elitenftcourse/images/icon-eth.svg" alt="Floor price">
-                                            2.5
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="market__item-activity">
-                                    <div class="market__item-state market__item-state_up">—</div>
-                                    <div class="market__item-volume">
-                                        <img src="/elitenftcourse/images/icon-eth.svg" alt="Volume"> 5,379,151
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="market__item">
-                                <div class="market__item-number">6</div>
-                                <div class="market__item-pic">
-                                    <img src="/elitenftcourse/images/icon-market.png" alt="">
-                                </div>
-                                <div class="market__item-data">
-                                    <div class="market__item-name">Smokin</div>
-                                    <div class="market__item-floor">
-                                        Floor price:
-                                        <span>
-                                            <img src="/elitenftcourse/images/icon-eth.svg" alt="Floor price">
-                                            2.5
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="market__item-activity">
-                                    <div class="market__item-state market__item-state_up">—</div>
-                                    <div class="market__item-volume">
-                                        <img src="/elitenftcourse/images/icon-eth.svg" alt="Volume"> 5,379,151
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="market__item">
-                                <div class="market__item-number">7</div>
-                                <div class="market__item-pic">
-                                    <img src="/elitenftcourse/images/icon-market.png" alt="">
-                                </div>
-                                <div class="market__item-data">
-                                    <div class="market__item-name">Smokin</div>
-                                    <div class="market__item-floor">
-                                        Floor price:
-                                        <span>
-                                            <img src="/elitenftcourse/images/icon-eth.svg" alt="Floor price">
-                                            2.5
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="market__item-activity">
-                                    <div class="market__item-state market__item-state_up">—</div>
-                                    <div class="market__item-volume">
-                                        <img src="/elitenftcourse/images/icon-eth.svg" alt="Volume"> 5,379,151
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="market__item">
-                                <div class="market__item-number">8</div>
-                                <div class="market__item-pic">
-                                    <img src="/elitenftcourse/images/icon-market.png" alt="">
-                                </div>
-                                <div class="market__item-data">
-                                    <div class="market__item-name">Smokin</div>
-                                    <div class="market__item-floor">
-                                        Floor price:
-                                        <span>
-                                            <img src="/elitenftcourse/images/icon-eth.svg" alt="Floor price">
-                                            2.5
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="market__item-activity">
-                                    <div class="market__item-state market__item-state_up">—</div>
-                                    <div class="market__item-volume">
-                                        <img src="/elitenftcourse/images/icon-eth.svg" alt="Volume"> 5,379,151
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="market__item">
-                                <div class="market__item-number">9</div>
-                                <div class="market__item-pic">
-                                    <img src="/elitenftcourse/images/icon-market.png" alt="">
-                                </div>
-                                <div class="market__item-data">
-                                    <div class="market__item-name">Smokin</div>
-                                    <div class="market__item-floor">
-                                        Floor price:
-                                        <span>
-                                            <img src="/elitenftcourse/images/icon-eth.svg" alt="Floor price">
-                                            2.5
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="market__item-activity">
-                                    <div class="market__item-state market__item-state_up">—</div>
-                                    <div class="market__item-volume">
-                                        <img src="/elitenftcourse/images/icon-eth.svg" alt="Volume"> 5,379,151
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="market__item">
-                                <div class="market__item-number">10</div>
-                                <div class="market__item-pic">
-                                    <img src="/elitenftcourse/images/icon-market.png" alt="">
-                                </div>
-                                <div class="market__item-data">
-                                    <div class="market__item-name">Smokin</div>
-                                    <div class="market__item-floor">
-                                        Floor price:
-                                        <span>
-                                            <img src="/elitenftcourse/images/icon-eth.svg" alt="Floor price">
-                                            2.5
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="market__item-activity">
-                                    <div class="market__item-state market__item-state_up">—</div>
-                                    <div class="market__item-volume">
-                                        <img src="/elitenftcourse/images/icon-eth.svg" alt="Volume"> 5,379,151
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="market__item">
-                                <div class="market__item-number">11</div>
-                                <div class="market__item-pic">
-                                    <img src="/elitenftcourse/images/icon-market.png" alt="">
-                                </div>
-                                <div class="market__item-data">
-                                    <div class="market__item-name">Smokin</div>
-                                    <div class="market__item-floor">
-                                        Floor price:
-                                        <span>
-                                            <img src="/elitenftcourse/images/icon-eth.svg" alt="Floor price">
-                                            2.5
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="market__item-activity">
-                                    <div class="market__item-state market__item-state_up">—</div>
-                                    <div class="market__item-volume">
-                                        <img src="/elitenftcourse/images/icon-eth.svg" alt="Volume"> 5,379,151
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="market__item">
-                                <div class="market__item-number">12</div>
-                                <div class="market__item-pic">
-                                    <img src="/elitenftcourse/images/icon-market.png" alt="">
-                                </div>
-                                <div class="market__item-data">
-                                    <div class="market__item-name">Smokin</div>
-                                    <div class="market__item-floor">
-                                        Floor price:
-                                        <span>
-                                            <img src="/elitenftcourse/images/icon-eth.svg" alt="Floor price">
-                                            2.5
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="market__item-activity">
-                                    <div class="market__item-state market__item-state_up">—</div>
-                                    <div class="market__item-volume">
-                                        <img src="/elitenftcourse/images/icon-eth.svg" alt="Volume"> 5,379,151
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
+
         <div class="contacts" id="contacts">
             <div class="wrapper">
                 <h2><span class="u10">Contacts</span></h2>
@@ -732,25 +380,26 @@
     </div>
 
     <div class="popup" id="purchase">
-        <form id="register" class="ajax-form full_preloader-ajax-form purchase" action="{{ route('registerAction') }}" method="POST">
-            @csrf
-            <div class="purchase__steps">
-                <div step-ajax-form="register" class="purchase__steps-step current">
-                    <span>Main Data</span>
-                </div>
-                <div step-ajax-form="register" class="purchase__steps-step">
-                    <span>Blling Information</span>
-                </div>
-                <div step-ajax-form="register" class="purchase__steps-step">
-                    <span>Finish</span>
-                </div>
+        <div class="purchase__steps">
+            <div class="purchase__steps-step current">
+                <span>Main Data</span>
+            </div>
+            <div class="purchase__steps-step">
+                <span>Blling Information</span>
+            </div>
+            <div class="purchase__steps-step">
+                <span>Finish</span>
+            </div>
+        </div>
+
+        <div class="wrapper">
+            <div class="popup__close">
+                <svg width="56" height="56" fill="none" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M7 28C7 11.67 11.67 7 28 7s21 4.67 21 21-4.85 21-21 21S7 44.33 7 28Z" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M33.83 22.17 22.17 33.83m11.66 0L22.17 22.17" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
             </div>
 
-            <div class="wrapper">
-                <div class="popup__close">
-                    <svg width="56" height="56" fill="none" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M7 28C7 11.67 11.67 7 28 7s21 4.67 21 21-4.85 21-21 21S7 44.33 7 28Z" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M33.83 22.17 22.17 33.83m11.66 0L22.17 22.17" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
-                </div>
-                <div class="purchase__step current step-ajax-form">
+            <div class="purchase__step current">
+                <form id="register" preloader-ajax-form="body" class="ajax-form purchase" action="{{ route('registerAction') }}" method="POST" next_step-ajax-form=".purchase__step:eq(1), .purchase__steps-step:eq(1)">
+                    @csrf
                     <div class="purchase__row row">
                         <div class="col-md-8 col-sm-7 col-xs-12">
                             <div class="purchase__title">Personal Data</div>
@@ -758,14 +407,14 @@
                                 <label class="purchase__label">
                                     <span>First Name</span>
                                     <div class="purchase__input_group">
-                                        <input name="first_name" class="purchase__input" type="text" placeholder="John" autocomplete="off" required>
+                                        <input name="first_name" class="purchase__input" type="text" placeholder="John" autocomplete="off" required @if(!empty($order)) value="{{ $order->parameters()->getParametr('first_name') }}" placeholder="{{ $order->parameters()->getParametr('first_name') }}" @endif>
                                         <div class="error-text first_name_error"></div>
                                     </div>
                                 </label>
                                 <label class="purchase__label">
                                     <span>Last Name</span>
                                     <div class="purchase__input_group">
-                                        <input name="last_name" class="purchase__input" type="text" placeholder="Doe" autocomplete="off" required>
+                                        <input name="last_name" class="purchase__input" type="text" placeholder="Doe" autocomplete="off" required @if(!empty($order)) value="{{ $order->parameters()->getParametr('last_name') }}" placeholder="{{ $order->parameters()->getParametr('last_name') }}" @endif>
                                         <div class="error-text last_name_error"></div>
                                     </div>
                                 </label>
@@ -774,14 +423,14 @@
                                 <label class="purchase__label">
                                     <span>Telephone</span>
                                     <div class="purchase__input_group">
-                                        <input name="phone" class="purchase__input" type="tel" placeholder="+XX(XXX)XXXXXXXXX" autocomplete="off" required>
+                                        <input name="phone" class="purchase__input" type="tel" placeholder="+XX(XXX)XXXXXXXXX" autocomplete="off" required @if(!empty($order)) value="{{ $order->parameters()->getParametr('phone') }}" placeholder="{{ $order->parameters()->getParametr('phone') }}" @endif>
                                         <div class="error-text phone_error"></div>
                                     </div>
                                 </label>
                                 <label class="purchase__label">
                                     <span>Email</span>
                                     <div class="purchase__input_group">
-                                        <input name="email" class="purchase__input" type="email" placeholder="youremail@mail.com" autocomplete="off" required>
+                                        <input name="email" class="purchase__input" type="email" placeholder="youremail@mail.com" autocomplete="off" required @if(!empty($order)) value="{{ $order->parameters()->getParametr('email') }}" placeholder="{{ $order->parameters()->getParametr('email') }}" @endif>
                                         <div class="error-text email_error"></div>
                                     </div>
                                 </label>
@@ -806,45 +455,28 @@
                         <div class="col-md-4 col-sm-5 col-xs-12 d_flex">
                             <div class="purchase__title">Choose Package</div>
                             <div class="purchase__group">
-                                <label class="purchase__radio">
-                                    <input type="radio" name="package" checked>
-                                    <span class="purchase__radio-container">
-                                        <i class="purchase__radio-circle"></i>
-                                        <span class="purchase__radio-title">Beginner</span>
-                                        <span class="purchase__radio-price">$235</span>
-                                    </span>
-                                </label>
-                                <label class="purchase__radio">
-                                    <input type="radio" name="package">
-                                    <span class="purchase__radio-container">
-                                        <i class="purchase__radio-circle"></i>
-                                        <span class="purchase__radio-title">Intermediate</span>
-                                        <span class="purchase__radio-price">$475</span>
-                                    </span>
-                                </label>
-                                <label class="purchase__radio">
-                                    <input type="radio" name="package">
-                                    <span class="purchase__radio-container">
-                                        <i class="purchase__radio-circle"></i>
-                                        <span class="purchase__radio-title">Trade</span>
-                                        <span class="purchase__radio-price">$950</span>
-                                    </span>
-                                </label>
-                                <label class="purchase__radio">
-                                    <input type="radio" name="package">
-                                    <span class="purchase__radio-container">
-                                        <i class="purchase__radio-circle"></i>
-                                        <span class="purchase__radio-title">Elite</span>
-                                        <span class="purchase__radio-price">$1400</span>
-                                    </span>
-                                </label>
+
+                                @foreach ($packages as $package)
+                                    <label class="purchase__radio">
+                                        <input type="radio" name="package" @if(!empty($order))  @if ($order->parameters()->getParametr('package_id') == $package->id) checked @endif @endif value="{{ $package->id }}" autocomplete="off">
+                                        <span class="purchase__radio-container">
+                                            <i class="purchase__radio-circle"></i>
+                                            <span class="purchase__radio-title">{{ $package->name }}</span>
+                                            <span class="purchase__radio-price">${{ (floatval($package->discount) == 0) ? $package->price : $package->discount }}</span>
+                                        </span>
+                                    </label>
+                                @endforeach
+
                                 <div class="error-text package_error"></div>
                             </div>
                             <button type="submit" class="btn btn_block purchase__btn">Next</button>
                         </div>
                     </div>
-                </div>
-                <div class="purchase__step step-ajax-form">
+                </form>
+            </div>
+            <div class="purchase__step">
+                <form action="{{ route('registerAction.pay') }}" method="POST" next_step-ajax-form=".purchase__step:eq(2), .purchase__steps-step:eq(2)" preloader-ajax-form="body" class="ajax-form purchase">
+                    @csrf
                     <div class="purchase__row row">
                         <div class="col-md-8 col-sm-8 col-xs-12">
                             <div class="purchase__title">Billing Information</div>
@@ -852,14 +484,14 @@
                                 <label class="purchase__label">
                                     <span>Card Number</span>
                                     <div class="purchase__input_group">
-                                        <input name="card_number" class="purchase__input" type="text" placeholder="0000 0000 0000 0000">
+                                        <input name="card_number" class="purchase__input" type="text" placeholder="0000 0000 0000 0000" autocomplete="off" required>
                                         <div class="error-text card_number_error"></div>
                                     </div>
                                 </label>
                                 <label class="purchase__label">
                                     <span>Cardholder Name</span>
                                     <div class="purchase__input_group">
-                                        <input name="cardholder_name" class="purchase__input" type="text" placeholder="John Doe">
+                                        <input name="cardholder_name" class="purchase__input" type="text" placeholder="John Doe" autocomplete="off" required>
                                         <div class="error-text cardholder_name_error"></div>
                                     </div>
                                 </label>
@@ -869,13 +501,13 @@
                                         <div class="row">
                                             <div class="col-md-6 col-sm-6 col-xs-6">
                                                 <div class="purchase__input_group">
-                                                    <input name="expiration_month" class="purchase__input" type="text" placeholder="Month">
+                                                    <input name="expiration_month" class="purchase__input" type="text" placeholder="Month" autocomplete="off" required>
                                                     <div class="error-text expiration_month_error"></div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-sm-6 col-xs-6">
                                                 <div class="purchase__input_group">
-                                                    <input name="expiration_year" class="purchase__input" type="text" placeholder="Year">
+                                                    <input name="expiration_year" class="purchase__input" type="text" placeholder="Year" autocomplete="off" required>
                                                     <div class="error-text expiration_year_error"></div>
                                                 </div>
                                             </div>
@@ -885,7 +517,7 @@
                                 <label class="purchase__label">
                                     <span>CVV/CVC</span>
                                     <div class="purchase__input_group">
-                                        <input name="cvv" class="purchase__input" type="text" placeholder="Security Code">
+                                        <input name="cvv" class="purchase__input" type="text" placeholder="Security Code" autocomplete="off" required>
                                         <div class="error-text cvv_error"></div>
                                     </div>
                                 </label>
@@ -905,57 +537,59 @@
                             <div class="purchase__group">
                                 <div class="purchase__summery">
                                     <div class="purchase__summery-data">
-                                        <span class="full_name"></span><br> <span class="phone"></span><br> <span class="full_name"></span>
+                                        <span class="full_name">@if(!empty($order)) {{ $order->parameters()->getParametr('first_name') . ' ' . $order->parameters()->getParametr('last_name')  }} @endif</span><br> <span class="phone">@if(!empty($order)) {{ $order->parameters()->getParametr('phone') }} @endif</span><br> <span class="email">@if(!empty($order)) {{ $order->parameters()->getParametr('email') }} @endif</span>
                                     </div>
                                     <div class="purchase__summery-back">
                                         <a href="#prev">Change</a>
                                     </div>
-                                    <div class="purchase__summery-package">
-                                        <div class="purchase__summery-package-img">
-                                            <img src="/elitenftcourse/images/icon-beginner.png" alt="">
+                                    @foreach ($packages as $package)
+                                        <div class="purchase__summery-package @if(!empty($order)) @if ($order->parameters()->getParametr('package_id') == $package->id) current @endif @endif" data-package_id = "{{ $package->id }}">
+                                            <div class="purchase__summery-package-img">
+                                                <img src="/uploads/images/packages/preview/{{ $package->preview }}" alt="{{ $package->name }}">
+                                            </div>
+                                            <div class="purchase__summery-package-title">
+                                                {{ $package->name }}
+                                            </div>
+                                            <div class="purchase__summery-package-price">
+                                                ${{ (floatval($package->discount) == 0) ? $package->price : $package->discount }}
+                                            </div>
                                         </div>
-                                        <div class="purchase__summery-package-title">
-                                            Beginner
-                                        </div>
-                                        <div class="purchase__summery-package-price">
-                                            $235
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="purchase__step">
-                    <div class="purchase__row">
-                        <div class="purchase__finish">
-                            <div class="purchase__finish-title">Payment Successful</div>
-                            <div class="purchase__finish-img">
-                                <img src="/elitenftcourse/images/icon-beginner.png" alt="Beginner">
-                            </div>
-                            <div class="purchase__finish-subtitle">Beginner</div>
-                            <div class="purchase__finish-price">$235</div>
-                            <div class="purchase__finish-link">
-                                <a href="#">Go to Course</a>
-                            </div>
+                </form>
+            </div>
+            <div class="purchase__step">
+                <div class="purchase__row">
+                    <div class="purchase__finish" object-status="true">
+                        <div class="purchase__finish-title">Payment Successful</div>
+                        <div class="purchase__finish-img">
+                            <img src="/elitenftcourse/images/icon-beginner.png" alt="Beginner">
                         </div>
-                        <div class="purchase__finish">
-                            <div class="purchase__finish-title">Payment Error</div>
-                            <div class="purchase__finish-img">
-                                <img src="/elitenftcourse/images/icon-error.svg" alt="Error">
-                            </div>
-                            <div class="purchase__finish-link">
-                                <a href="#prev">Try Again</a>
-                            </div>
+                        <div class="purchase__finish-subtitle">Beginner</div>
+                        <div class="purchase__finish-price">$235</div>
+                        <div class="purchase__finish-link">
+                            <a href="#">Go to Course</a>
+                        </div>
+                    </div>
+                    <div class="purchase__finish" object-status="false">
+                        <div class="purchase__finish-title">Payment Error</div>
+                        <div class="purchase__finish-img">
+                            <img src="/elitenftcourse/images/icon-error.svg" alt="Error">
+                        </div>
+                        <div class="purchase__finish-link">
+                            <a href="#prev">Try Again</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 
     <div class="popup" id="login">
-        <form action="{{ route('loginAction') }}" method="POST" class="ajax-form login">
+        <form action="{{ route('loginAction') }}" preloader-ajax-form="body" method="POST" class="ajax-form login">
             @csrf
             <div class="wrapper">
                 <div class="popup__close">

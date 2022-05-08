@@ -69,6 +69,21 @@
     {{ HTML::style('/admin/css/preloader.css') }}
     {{ HTML::script('/admin/js/preloader.js') }}
 
+    @if (Route::currentRouteName() === 'admin.calendar')
+      <!-- tui.calendar -->
+      {{ HTML::style('/vendor/tui.calendar/dist/tui-calendar.min.css') }}
+      {{ HTML::style('/vendor/tui.calendar/dist/tui-date-picker.css') }}
+      {{ HTML::style('/vendor/tui.calendar/dist/tui-time-picker.css') }}
+      {{ HTML::script('/vendor/tui.calendar/dist/tui-code-snippet.min.js') }}
+      {{ HTML::script('/vendor/tui.calendar/dist/tui-time-picker.min.js') }}
+      {{ HTML::script('/vendor/tui.calendar/dist/tui-date-picker.min.js') }}
+      {{ HTML::script('/vendor/tui.calendar/dist/tui-calendar.min.js') }}
+    @endif
+
+    <!-- jquery.popup -->
+    {{ HTML::style('/vendor/jquery.popup/dist/jquery.popup.css') }}
+    {{ HTML::script('/vendor/jquery.popup/dist/jquery.popup.js') }}
+
   </head>
   <body>
 

@@ -15,14 +15,13 @@ class CreateOrdersTable extends Migration
   {
     Schema::create('orders', function (Blueprint $table) {
       $table->id();
-      $table->unsignedBigInteger('user_id');
+      $table->string('token', 200)->unique();
       $table->enum('payment_method', ['fibonatix']);
       $table->decimal('amount', 19, 2);
       $table->enum('type', ['user_registration']);
       $table->enum('status', [1, 0])->default(0);
+      $table->timestamp('end');
       $table->timestamps();
-
-      $table->foreign('user_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
     });
   }
 

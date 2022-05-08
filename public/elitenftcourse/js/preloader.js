@@ -18,15 +18,13 @@ var preloader = class {
     $('body').unbind('touchmove');
   }
 
-  static start(text = '')
+  static start(parent = 'body', text = '')
   {
-    if ($('.loader').length == 0) {
-
-      this.stopScroll();
+    if ($(parent).find('.loader').length == 0) {
 
       var container = document.createElement('div');
       container.className = 'loader';
-      $('body').append(container);
+      $(parent).append(container);
 
       var loader_linner = document.createElement('div');
       loader_linner.className = 'loader-inner';
@@ -48,13 +46,13 @@ var preloader = class {
         text = 'Please wait';
       }
 
-      $('.loader .loader-inner .text').html(text);
+      $(parent).find('.loader .loader-inner .text').html(text);
     }
   }
 
-  static stop()
+  static stop(parent = 'body')
   {
-    $('.loader').remove();
+    $(parent).find('.loader').remove();
     this.onScroll();
   }
 }
