@@ -31,7 +31,7 @@ class PhoneIntoOrderRule implements Rule
    */
   public function passes($attribute, $value)
   {
-    $value = straval(filter_var($value, FILTER_SANITIZE_NUMBER_INT));
+    $value = strval(filter_var($value, FILTER_SANITIZE_NUMBER_INT));
 
     $orders = Orders::with('parameters')->where('status', '=', '0')->where('end', '>', Carbon::now()->toDateTimeString())->whereHas('parameters', function(Builder $query) use ($value){
       $query->where('name', '=' , 'phone')->where('value', '=' , $value);

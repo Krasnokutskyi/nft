@@ -4,7 +4,7 @@
         <ul>
             <li><a href="{{ route('videos.posts') }}">Videos</a></li>
             <li><a href="{{ route('downloads.files') }}">Downloads</a></li>
-            <li><a href="#">Calendar</a></li>
+            <li><a href="{{ route('calendar') }}">Calendar</a></li>
             <li><a href="{{ route('blog.posts') }}">Blog</a></li>
             <li><a href="{{ route('marketActivity') }}">Market Activity</a></li>
         </ul>
@@ -21,7 +21,7 @@
         <ul class="menu__box">
             <li><a href="{{ route('videos.posts') }}">Videos</a></li>
             <li><a href="{{ route('downloads.files') }}">Downloads</a></li>
-            <li><a href="#">Calendar</a></li>
+            <li><a href="{{ route('calendar') }}">Calendar</a></li>
             <li><a href="{{ route('blog.posts') }}">Blog</a></li>
             <li><a href="{{ route('marketActivity') }}">Market Activity</a></li>
         </ul>

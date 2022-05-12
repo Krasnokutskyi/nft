@@ -68,7 +68,9 @@ Route::middleware("auth:admin")->group(function() {
 
   // Calendar
   Route::get('/admin/content/calendar/', [App\Http\Controllers\Admin\Calendar\CalendarController::class, 'calendar'])->name('calendar');
-  Route::post('/admin/content/calendar/add/', [App\Http\Controllers\Admin\Calendar\CalendarController::class, 'addScheduleAction'])->name('calendar.addAction');
+  Route::post('/admin/content/calendar/add/', [App\Http\Controllers\Admin\Calendar\CalendarController::class, 'addScheduleAction'])->name('calendar.schedule.addAction');
+  Route::post('/admin/content/calendar/edit/', [App\Http\Controllers\Admin\Calendar\CalendarController::class, 'editScheduleAction'])->name('calendar.schedule.editAction');
+  Route::post('/admin/content/calendar/delete/', [App\Http\Controllers\Admin\Calendar\CalendarController::class, 'deleteScheduleAction'])->name('calendar.schedule.deleteAction');
 
   // Market Activity
   Route::get('/admin/content/market-activity/', [App\Http\Controllers\Admin\MarketActivity\MarketActivityController::class, 'index'])->name('marketActivity');

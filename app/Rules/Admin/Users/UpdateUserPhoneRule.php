@@ -31,7 +31,7 @@ class UpdateUserPhoneRule implements Rule
     $user = User::where('id', '=', $this->user_id)->get();
 
     if ($user->count() === 1) {
-      if ($user->first()->phone === $value || Posts::where('phone', '=', $value)->count() === 0) {
+      if ($user->first()->phone === $value || User::where('phone', '=', $value)->count() === 0) {
         return true;
       }
     }

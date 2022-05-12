@@ -33,7 +33,7 @@
               <h3 class="mb-0">Edit user</h3>
             </div>
             <div class="card-body">
-              <form method="POST" class="ajax-form custom-form">
+              <form method="POST" preloader-ajax-form=".card" class="ajax-form custom-form">
                 @csrf
                 <div class="row">
                   <div class="col-md-6 col-sm-12">

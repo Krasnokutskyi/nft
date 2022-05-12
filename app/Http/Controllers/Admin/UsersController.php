@@ -31,6 +31,8 @@ class UsersController extends AdminController
       'email', 'password', 'package',
     ]);
 
+    $validated['phone'] = strval(filter_var($validated['phone'], FILTER_SANITIZE_NUMBER_INT));
+
     $user_id = User::create([
       "first_name" => $validated["first_name"],
       "last_name" => $validated["last_name"],

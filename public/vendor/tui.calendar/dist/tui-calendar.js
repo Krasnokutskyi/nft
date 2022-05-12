@@ -11843,7 +11843,7 @@ Calendar.prototype._toggleViewSchedule = function(isAttach, view) {
     });
 
     util.forEach(handler.move, function(moveHandler) {
-        moveHandler[method]('beforeUpdateSchedule', self._onBeforeUpdate, self);
+      moveHandler[method]('beforeUpdateSchedule', self._onBeforeUpdate, self);
     });
 
     util.forEach(handler.resize, function(resizeHandler) {
@@ -12463,8 +12463,23 @@ function createMonthView(baseController, layoutContainer, dragHandler, options) 
 
         if (options.useCreationPopup) {
             onShowEditPopup = function(eventData) {
-                createView.setCalendars(baseController.calendars);
-                createView.render(eventData);
+
+              createView.setCalendars(baseController.calendars);
+              createView.render(eventData);
+
+              // Colors
+              $('input[name="bgColor"').val(eventData.schedule.bgColor);
+              $('input[name="text_color"').val(eventData.schedule.color);
+              $('#bgColor, #textColor').spectrum({
+                type: "component",
+                showInput: false,
+              });
+              $('#bgColor, #textColor').attr('readonly', 'readonly');
+              $('.sp-container').addClass('tui-full-calendar-floating-layer');
+              $('.sp-container').addClass('tui-full-calendar-popup');
+
+              // Editor
+              $('#editor .ql-editor').html(eventData.schedule.body);
             };
             createView.on('beforeUpdateSchedule', onEditSchedule);
             detailView.on('beforeUpdateSchedule', onShowEditPopup);
@@ -22039,6 +22054,7 @@ ScheduleCreationPopup.prototype._onClickSaveSchedule = function(target) {
  * @param {object} viewModel - view model from factory/monthView
  */
 ScheduleCreationPopup.prototype.render = function(viewModel) {
+
     var calendars = this.calendars;
     var layer = this.layer;
     var boxElement, guideElements, defaultStartDate, defaultEndDate;

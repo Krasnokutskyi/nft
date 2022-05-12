@@ -181,6 +181,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Propaganistas\LaravelPhone\PhoneServiceProvider::class,
         Dirape\Token\TokenServiceProvider::class,
+        Kaishiyoku\Validation\Color\ServiceProvider::class,
     ],
 
     /*

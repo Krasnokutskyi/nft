@@ -6,6 +6,8 @@ use App\Http\Requests\JsonFormRequest;
 use Illuminate\Validation\Rules\Password;
 use App\Rules\Admin\Users\UpdateUserPhoneRule;
 use App\Rules\Admin\Users\UpdateUserEmailRule;
+use App\Rules\Auth\PhoneIntoOrderRule;
+use App\Rules\Auth\EmailIntoOrderRule;
 
 class EditUserForm extends JsonFormRequest
 {
@@ -29,8 +31,8 @@ class EditUserForm extends JsonFormRequest
     return [
       'first_name' => ['required', 'string', 'max: 255'],
       'last_name' => ['required', 'string', 'max: 255'],
-      'phone' => ['required', 'phone:AUTO', new UpdateUserPhoneRule($this->route('user_id'))],
-      'email' => ['required', 'string', 'email', 'max:535', new UpdateUserEmailRule($this->route('user_id'))],
+      'phone' => ['required', 'phone:AUTO', new PhoneIntoOrderRule(), new UpdateUserPhoneRule($this->route('user_id'))],
+      'email' => ['required', 'string', 'email', 'max:535', new EmailIntoOrderRule(), new UpdateUserEmailRule($this->route('user_id'))],
       'package' => ['required', 'string', 'exists:packages,id'],
     ];
   }

@@ -248,3 +248,71 @@ table tbody.ui-sortable tr td
 	width: inherit;
 	cursor: pointer;
 }
+
+/* Calendar */
+#calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup-container
+{
+	min-width: 520px;
+}
+#calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup-detail .tui-full-calendar-popup-container
+{
+	min-width: 420px;
+}
+#calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup-container .tui-full-calendar-popup-section .tui-full-calendar-popup-section-item.tui-full-calendar-section-title
+{
+	width: 100%;
+}
+#calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup .colors_container
+{
+	display: flex;
+	flex-direction: row;
+	margin: 0px -5px;
+	width: calc(100% + 10px);
+	margin-bottom: 8px;
+}
+#calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup .colors_container label
+{
+	font-size: 12px;
+	flex: 50%;
+	margin: 0px 5px;
+	color: black;
+}
+#calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup .colors_container label .sp-original-input-container
+{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	height: 32px;
+	height: 32px;
+	border: 1px solid #d5d5d5;
+}
+#calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup .colors_container label .sp-original-input-container .sp-colorize-container
+{
+	display: inline-flex;
+	flex: 34px;
+	max-width: 34px !important;
+	max-height: 100% !important;
+	height: 100% !important;
+	cursor: pointer;
+}
+#calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup .colors_container label .sp-original-input-container input
+{
+	outline: unset;
+	border: unset;
+	background: transparent;
+	padding-left: 5px;
+	cursor: pointer;
+}
+#calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup #editor.ql-container.ql-snow
+{
+	margin-bottom: 8px;
+	border: unset;
+}
+#calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup #editor.ql-container.ql-snow .ql-editor
+{
+	min-height: 150px;
+}
+#calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup #editor.ql-container.ql-snow .ql-editor:focus
+{
+	box-shadow: unset;
+}

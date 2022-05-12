@@ -20,10 +20,24 @@
     {{ HTML::style('/vendor/sweetalert2/dist/sweetalert2.min.css') }}
     {{ HTML::script('/vendor/sweetalert2/dist/sweetalert2.min.js') }}
 
-    @if (Route::currentRouteName() === 'blog.post')
+    @if (Route::currentRouteName() === 'blog.post' or Route::currentRouteName() === 'calendar')
         <!-- Quilljs Core -->
         {{ HTML::style('/vendor/quill/dist/quill.core.css') }}
     @endif
+
+    @if (Route::currentRouteName() === 'calendar')
+
+      <!-- tui.calendar -->
+      {{ HTML::style('/vendor/tui.calendar/dist/tui-calendar.min.css') }}
+      {{ HTML::style('/vendor/tui.calendar/dist/tui-date-picker.css') }}
+      {{ HTML::style('/vendor/tui.calendar/dist/tui-time-picker.css') }}
+      {{ HTML::script('/vendor/tui.calendar/dist/tui-code-snippet.min.js') }}
+      {{ HTML::script('/vendor/tui.calendar/dist/tui-time-picker.min.js') }}
+      {{ HTML::script('/vendor/tui.calendar/dist/tui-date-picker.min.js') }}
+      {{ HTML::script('/vendor/tui.calendar/dist/tui-calendar.js') }}
+
+    @endif
+    
 </head>
 
 <body @if(Route::currentRouteName() !== 'home') class="inner" @endif>

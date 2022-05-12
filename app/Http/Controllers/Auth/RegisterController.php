@@ -21,7 +21,7 @@ class RegisterController extends Controller
       'email', 'password', 'package',
     ]);
 
-    $validated['phone'] = straval(filter_var($validated['phone'], FILTER_SANITIZE_NUMBER_INT)); 
+    $validated['phone'] = strval(filter_var($validated['phone'], FILTER_SANITIZE_NUMBER_INT)); 
 
     $package = Packages::where('id', '=', $validated['package'])->get()->first();
     $price_package = (floatval($package->discount) == 0) ? $package->price : $package->discount;

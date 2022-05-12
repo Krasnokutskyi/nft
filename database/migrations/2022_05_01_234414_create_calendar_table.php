@@ -13,12 +13,15 @@ return new class extends Migration
    */
   public function up()
   {
-    Schema::create('calendars', function (Blueprint $table) {
+    Schema::create('calendar', function (Blueprint $table) {
       $table->id();
       $table->string('title', 535);
+      $table->longText('text');
+      $table->enum('is_all_day', [1, 0])->default(0);
+      $table->string('bg_color', 50);
+      $table->string('text_color', 50);
       $table->timestamp('start');
       $table->timestamp('end');
-      $table->enum('category', ['allday', 'time']);
       $table->timestamps();
     });
   }
@@ -30,6 +33,6 @@ return new class extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('calendars');
+    Schema::dropIfExists('calendar');
   }
 };

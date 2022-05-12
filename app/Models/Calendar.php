@@ -9,10 +9,15 @@ class Calendar extends Model
 {
   use HasFactory;
 
+  public $table = 'calendar';
+
   protected $fillable = [
-    "title",
-    "start",
-    "end",
-    "category",
+    'title', 
+    'text', 
+    'is_all_day',
+    'bg_color', 
+    'text_color', 
+    'start', 
+    'end'
   ];
 }

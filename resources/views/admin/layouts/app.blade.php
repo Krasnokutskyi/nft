@@ -30,6 +30,8 @@
     {{ HTML::script('/vendor/js-cookie/js.cookie.js') }}
     {{ HTML::script('/vendor/jquery.scrollbar/jquery.scrollbar.min.js') }}
     {{ HTML::script('/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js') }}
+    {{ HTML::script('/vendor/jquery.redirect/dist/jquery.redirect.js') }}
+
 
     <!-- Jquery UI -->
     {{ HTML::style('/vendor/jquery-ui/jquery-ui.min.css') }}
@@ -70,6 +72,11 @@
     {{ HTML::script('/admin/js/preloader.js') }}
 
     @if (Route::currentRouteName() === 'admin.calendar')
+
+      <!-- Spectrum -->
+      {{ HTML::style('/vendor/spectrum/dist/spectrum.min.css') }}
+      {{ HTML::script('/vendor/spectrum/dist/spectrum.min.js') }}
+
       <!-- tui.calendar -->
       {{ HTML::style('/vendor/tui.calendar/dist/tui-calendar.min.css') }}
       {{ HTML::style('/vendor/tui.calendar/dist/tui-date-picker.css') }}
@@ -77,7 +84,8 @@
       {{ HTML::script('/vendor/tui.calendar/dist/tui-code-snippet.min.js') }}
       {{ HTML::script('/vendor/tui.calendar/dist/tui-time-picker.min.js') }}
       {{ HTML::script('/vendor/tui.calendar/dist/tui-date-picker.min.js') }}
-      {{ HTML::script('/vendor/tui.calendar/dist/tui-calendar.min.js') }}
+      {{ HTML::script('/vendor/tui.calendar/dist/tui-calendar.js') }}
+
     @endif
 
     <!-- jquery.popup -->

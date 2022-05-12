@@ -31,7 +31,7 @@ class UpdateUserEmailRule implements Rule
     $user = User::where('id', '=', $this->user_id)->get();
 
     if ($user->count() === 1) {
-      if ($user->first()->email === $value || Posts::where('email', '=', $value)->count() === 0) {
+      if ($user->first()->email === $value || User::where('email', '=', $value)->count() === 0) {
         return true;
       }
     }

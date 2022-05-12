@@ -111,11 +111,11 @@
             </ul>
           </div>
         </li>
-        <li class="nav-item">
+{{--         <li class="nav-item">
           <a class="nav-link" href="#">
             <i class="fas fa-box text-dark"></i> Orders
           </a>
-        </li>
+        </li> --}}
         <li class="nav-item">
           <a class="nav-link" href="{{ route('admin.packages') }}">
             <i class="fas fa-ticket-alt text-dark"></i> Packages
