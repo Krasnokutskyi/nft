@@ -106,7 +106,7 @@
       <span></span><span></span>
     </a>
     <div class="p_content">
-      <form action="{{ route('admin.marketActivity.parser') }}" method="POST" preloader-ajax-form=".p_content" class="custom-form" enctype="multipart/form-data">
+      <form action="{{ route('admin.marketActivity.parser') }}" method="POST" preloader-ajax-form=".p_content" class="ajax-form custom-form" enctype="multipart/form-data">
         @csrf
         <h1 class="title">Parser Data</h1>
         <div class="form-group">
