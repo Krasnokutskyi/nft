@@ -250,19 +250,178 @@ table tbody.ui-sortable tr td
 }
 
 /* Calendar */
-#calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup-container
+.container-calendar .btn-default
+{
+  color: #333;
+  background-color: #fff;
+  border-color: #ddd;
+  box-shadow: unset;
+}
+.container-calendar .btn 
+{
+  border-radius: 25px;
+  border-color: #ddd;
+}
+.container-calendar .btn.prev-button,
+.container-calendar .btn.next-button
+{
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  padding: 0px;
+}
+.container-calendar .btn.prev-button
+{
+  padding-right: 1px;
+}
+.container-calendar .btn.next-button
+{
+  padding-left: 1px;
+}
+.container-calendar .btn i
+{
+  font-size: 17px;
+  display: inline;
+}
+.container-calendar .btn:hover
+{
+  background-color: rgb(13, 110, 253);
+  color: #fff;
+  border-color: #ddd !important;
+}
+.container-calendar .btn:active 
+{
+  background-color: rgb(13, 110, 253);
+  color: #fff;
+  outline: none;
+  border-color: #ddd !important;
+}
+.container-calendar .btn:disabled
+{
+  background-color: rgba(13, 110, 253, 0.5);
+  color: #bbb;
+  border-color: #ddd !important;
+}
+.container-calendar .btn:focus
+.container-calendar .btn:active, 
+.container-calendar .btn:focus, 
+.container-calendar .btn:active
+{
+	background-color: rgba(13, 110, 253) !important;
+	color: #fff !important;
+	border-color: #ddd !important;
+  outline: none;
+}
+.container-calendar .open > .dropdown-toggle.btn-default
+{
+  background-color: #fff;
+}
+.container-calendar .dropdown-menu
+{
+  top: 25px;
+  padding: 3px 0;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+}
+.container-calendar .dropdown-menu > li > a
+{
+  padding: 9px 12px;
+  cursor: pointer;
+  display: inline-block;
+  width: 100%;
+  line-height: 1.4;
+  font-size: 12px;
+}
+.container-calendar .dropdown-menu > li > a:hover
+{
+  background-color: rgba(81, 92, 230, 0.05);
+  color: #333;
+}
+.container-calendar #menu
+{
+  padding: 16px;
+  border-top: 1px solid #e5e5e5;
+}
+
+#dropdownMenu-calendarType
+{
+  padding: 0 8px 0 11px;
+}
+#dropdownMenu-calendarType i
+{
+  font-size: 12px;
+  margin-right: 4px;
+  position: relative;
+  top: 0.5px;
+}
+.container-calendar #calendarTypeName
+{
+  min-width: 62px;
+  display: inline-block;
+  text-align: left;
+  line-height: 30px;
+}
+.container-calendar .move-today
+{
+  padding: 0 16px;
+  line-height: 30px;
+}
+.container-calendar .move-day
+{
+  padding: 8px;
+  font-size: 0;
+}
+.container-calendar #renderRange
+{
+  padding-left: 12px;
+  font-size: 19px;
+  vertical-align: middle;
+}
+.container-calendar  .dropdown-menu-title .calendar-icon
+{
+  margin-right: 8px;
+}
+.container-calendar  .calendar-bar
+{
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  display: inline-block;
+  border: 1px solid #eee;
+  vertical-align: middle;
+}
+.container-calendar .calendar-name
+{
+  font-size: 14px;
+  font-weight: bold;
+  vertical-align: middle;
+}
+.container-calendar #calendar .tui-full-calendar-popup-detail .tui-full-calendar-content
+{
+	line-height: 1.4;
+}
+.container-calendar #calendar .tui-full-calendar-popup-detail .tui-full-calendar-content p
+{
+	line-height: 1.4;
+	padding: 0px;
+	margin: 0px;
+	font-size: 14px;
+	font-weight: 400;
+	font-style: normal;
+}
+.container-calendar #calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup-container
 {
 	min-width: 520px;
 }
-#calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup-detail .tui-full-calendar-popup-container
+.container-calendar #calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup-detail .tui-full-calendar-popup-container
 {
 	min-width: 420px;
 }
-#calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup-container .tui-full-calendar-popup-section .tui-full-calendar-popup-section-item.tui-full-calendar-section-title
+.container-calendar #calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup-container .tui-full-calendar-popup-section .tui-full-calendar-popup-section-item.tui-full-calendar-section-title
 {
 	width: 100%;
 }
-#calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup .colors_container
+.container-calendar #calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup .colors_container
 {
 	display: flex;
 	flex-direction: row;
@@ -270,14 +429,14 @@ table tbody.ui-sortable tr td
 	width: calc(100% + 10px);
 	margin-bottom: 8px;
 }
-#calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup .colors_container label
+.container-calendar #calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup .colors_container label
 {
 	font-size: 12px;
 	flex: 50%;
 	margin: 0px 5px;
 	color: black;
 }
-#calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup .colors_container label .sp-original-input-container
+.container-calendar #calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup .colors_container label .sp-original-input-container
 {
 	width: 100%;
 	display: flex;
@@ -286,7 +445,7 @@ table tbody.ui-sortable tr td
 	height: 32px;
 	border: 1px solid #d5d5d5;
 }
-#calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup .colors_container label .sp-original-input-container .sp-colorize-container
+.container-calendar #calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup .colors_container label .sp-original-input-container .sp-colorize-container
 {
 	display: inline-flex;
 	flex: 34px;
@@ -295,7 +454,7 @@ table tbody.ui-sortable tr td
 	height: 100% !important;
 	cursor: pointer;
 }
-#calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup .colors_container label .sp-original-input-container input
+.container-calendar #calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup .colors_container label .sp-original-input-container input
 {
 	outline: unset;
 	border: unset;
@@ -303,16 +462,16 @@ table tbody.ui-sortable tr td
 	padding-left: 5px;
 	cursor: pointer;
 }
-#calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup #editor.ql-container.ql-snow
+.container-calendar #calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup #editor.ql-container.ql-snow
 {
 	margin-bottom: 8px;
 	border: unset;
 }
-#calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup #editor.ql-container.ql-snow .ql-editor
+.container-calendar #calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup #editor.ql-container.ql-snow .ql-editor
 {
 	min-height: 150px;
 }
-#calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup #editor.ql-container.ql-snow .ql-editor:focus
+.container-calendar #calendar .tui-full-calendar-floating-layer .tui-full-calendar-popup #editor.ql-container.ql-snow .ql-editor:focus
 {
 	box-shadow: unset;
 }

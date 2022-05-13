@@ -32,7 +32,6 @@
     {{ HTML::script('/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js') }}
     {{ HTML::script('/vendor/jquery.redirect/dist/jquery.redirect.js') }}
 
-
     <!-- Jquery UI -->
     {{ HTML::style('/vendor/jquery-ui/jquery-ui.min.css') }}
     {{ HTML::script('/vendor/jquery-ui/jquery-ui.min.js') }}
@@ -85,6 +84,9 @@
       {{ HTML::script('/vendor/tui.calendar/dist/tui-time-picker.min.js') }}
       {{ HTML::script('/vendor/tui.calendar/dist/tui-date-picker.min.js') }}
       {{ HTML::script('/vendor/tui.calendar/dist/tui-calendar.js') }}
+
+      <!-- Moment -->
+      {{ HTML::script('/vendor/moment/dist/moment.min.js') }}
 
     @endif
 

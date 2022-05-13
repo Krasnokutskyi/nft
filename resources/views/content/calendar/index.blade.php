@@ -10,7 +10,74 @@
             <div class="market__title"><span>Calendary</span></div>
             <div class="market market_inner">
                 <div class="row">
-                    <div id="calendar"></div>
+                    <div class="container-calendar">
+                      <div id="menu">
+                        <span class="dropdown">
+                          <button id="dropdownMenu-calendarType" class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                              <i class="fas fa-bars"></i>
+                              <span id="calendarTypeName">Dropdown</span>&nbsp;
+                            </button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-calendarType">
+                              <li role="presentation">
+                                <a class="dropdown-menu-title" role="menuitem" data-action="toggle-daily">
+                                  <i class="fas fa-calendar-week"></i>Daily
+                                </a>
+                              </li>
+                              <li role="presentation">
+                                <a class="dropdown-menu-title" role="menuitem" data-action="toggle-weekly">
+                                  <i class="fas fa-calendar-week"></i>Weekly
+                                </a>
+                              </li>
+                              <li role="presentation">
+                                <a class="dropdown-menu-title" role="menuitem" data-action="toggle-monthly">
+                                  <i class="fas fa-calendar-week"></i>Month
+                                </a>
+                              </li>
+                              <li role="presentation">
+                                <a class="dropdown-menu-title" role="menuitem" data-action="toggle-weeks2">
+                                  <i class="fas fa-calendar-week"></i>2 weeks
+                                </a>
+                              </li>
+                              <li role="presentation">
+                                <a class="dropdown-menu-title" role="menuitem" data-action="toggle-weeks3">
+                                  <i class="fas fa-calendar-week"></i>3 weeks
+                                </a>
+                              </li>
+                              <li role="presentation" class="dropdown-divider"></li>
+                              <li role="presentation">
+                                <a role="menuitem" data-action="toggle-workweek">
+                                    <input type="checkbox" checked class="tui-full-calendar-checkbox-square" value="toggle-workweek" checked>
+                                    <span class="checkbox-title"></span>Show weekends
+                                </a>
+                              </li>
+                              <li role="presentation">
+                                  <a role="menuitem" data-action="toggle-start-day-1">
+                                    <input type="checkbox" class="tui-full-calendar-checkbox-square" value="toggle-start-day-1">
+                                    <span class="checkbox-title"></span>Start Week on Monday
+                                  </a>
+                              </li>
+                              <li role="presentation">
+                                  <a role="menuitem" data-action="toggle-narrow-weekend">
+                                    <input type="checkbox" class="tui-full-calendar-checkbox-square" value="toggle-narrow-weekend">
+                                    <span class="checkbox-title"></span>Narrower than weekdays
+                                  </a>
+                              </li>
+                            </ul>
+                        </span>
+                        <span id="menu-navi">
+                          <button type="button" class="btn btn-default btn-sm move-today" data-action="move-today">Today</button>
+                          <button type="button" class="btn btn-default btn-sm move-day prev-button" data-action="move-prev">
+                            <i data-action="move-prev" class="fas fa-angle-left"></i>
+                          </button>
+                          <button type="button" class="btn btn-default btn-sm move-day next-button" data-action="move-next">
+                            <i data-action="move-next" class="fas fa-angle-right"></i>
+                          </button>
+                        </span>
+                        <span id="renderRange" class="render-range"></span>
+                      </div>
+
+                      <div id="calendar"></div>
+                  </div>
                 </div>
             </div>
         </div>
@@ -38,66 +105,8 @@
           delete schedules[i].text_color, schedules[i].bg_color;
         }
 
-        var calendar = new tui.Calendar('#calendar', {
-            defaultView: 'month',
-            useCreationPopup: false,
-            useDetailPopup: true
-        });
-
-        calendar.createSchedules(schedules);
-
     </script>
 
-    <style type="text/css">
-        #calendar{
-            width: 100%;
-        }
-        #calendar .tui-full-calendar-layout
-        {
-            background-color: transparent !important;
-        }
-        #calendar .tui-full-calendar-layout .tui-full-calendar-month-dayname .tui-full-calendar-month-dayname-item span,
-        #calendar .tui-full-calendar-layout .tui-full-calendar-weekday-grid-header .tui-full-calendar-weekday-grid-date,
-        #calendar  .tui-full-calendar-weekday-schedule.tui-full-calendar-weekday-schedule-time .tui-full-calendar-weekday-schedule-title
-        {
-            color: #E4E4E8 !important;
-        }
-        #calendar .tui-full-calendar-month-week-item .tui-full-calendar-weekday-schedule
-        {
-            z-index: 30 !important;
-        }
-        #calendar .tui-full-calendar-month-creation-guide
-        {
-            background-color: transparent !important;
-            border-color: transparent !important;
-        }
-        #calendar .tui-full-calendar-popup .tui-full-calendar-popup-container
-        {
-            background-color: black !important;
-            min-width: 360px !important;
-            width: 100% !important;
-        }
-        #calendar .tui-full-calendar-popup-detail .tui-full-calendar-content p
-        {
-            line-height: 1.3 !important;
-            margin: 0px !important;
-            padding: 0px !important;
-        }
-        #calendar .tui-full-calendar-popup-detail .tui-full-calendar-section-button 
-        {
-            display: none !important;
-        }
-        #calendar .tui-full-calendar-weekday-border,
-        #calendar .tui-full-calendar-layout .tui-full-calendar-month-dayname,
-        #calendar .tui-full-calendar-weekday-grid-line
-        {
-            border-color: #2B3245 !important;
-        }
-        #calendar .tui-full-calendar-layout .tui-full-calendar-month-dayname .tui-full-calendar-month-dayname-item:first-child span,
-        #calendar .tui-full-calendar-layout .tui-full-calendar-weekday-grid-line:first-child .tui-full-calendar-weekday-grid-header .tui-full-calendar-weekday-grid-date
-        {
-            color: #B81414 !important;
-        }
-    </style>
+    {{ HTML::script('/elitenftcourse/js/calendar.js') }}
 
 @endsection

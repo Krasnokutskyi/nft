@@ -27,14 +27,23 @@
 
     @if (Route::currentRouteName() === 'calendar')
 
-      <!-- tui.calendar -->
-      {{ HTML::style('/vendor/tui.calendar/dist/tui-calendar.min.css') }}
-      {{ HTML::style('/vendor/tui.calendar/dist/tui-date-picker.css') }}
-      {{ HTML::style('/vendor/tui.calendar/dist/tui-time-picker.css') }}
-      {{ HTML::script('/vendor/tui.calendar/dist/tui-code-snippet.min.js') }}
-      {{ HTML::script('/vendor/tui.calendar/dist/tui-time-picker.min.js') }}
-      {{ HTML::script('/vendor/tui.calendar/dist/tui-date-picker.min.js') }}
-      {{ HTML::script('/vendor/tui.calendar/dist/tui-calendar.js') }}
+        {{-- Icons --}}
+        {{ HTML::style('/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}
+
+        <!-- Bootstrap -->
+        {{ HTML::script('/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}
+
+        <!-- tui.calendar -->
+        {{ HTML::style('/vendor/tui.calendar/dist/tui-calendar.min.css') }}
+        {{ HTML::style('/vendor/tui.calendar/dist/tui-date-picker.css') }}
+        {{ HTML::style('/vendor/tui.calendar/dist/tui-time-picker.css') }}
+        {{ HTML::script('/vendor/tui.calendar/dist/tui-code-snippet.min.js') }}
+        {{ HTML::script('/vendor/tui.calendar/dist/tui-time-picker.min.js') }}
+        {{ HTML::script('/vendor/tui.calendar/dist/tui-date-picker.min.js') }}
+        {{ HTML::script('/vendor/tui.calendar/dist/tui-calendar.js') }}
+
+        <!-- Moment -->
+        {{ HTML::script('/vendor/moment/dist/moment.min.js') }}
 
     @endif
     
