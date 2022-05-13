@@ -29,13 +29,29 @@ class Parser
           $icon_coin_path = '/images/MarketActivity/icons_coin/' . $icon_coin_name;
           Storage::disk('public')->put($icon_coin_path, $icon_coin);
 
+          $volume = 0;
+          if (array_key_exists('totalVolume', $item['statsV2'])) {
+            if (is_array($item['statsV2']['totalVolume'])) {
+              $volume = floatval($item['statsV2']['totalVolume']['unit']);
+            }
+          }
+
+          $floor_price = 0;
+          if (array_key_exists('floorPrice', $item['statsV2'])) {
+            if (is_array($item['statsV2']['floorPrice'])) {
+              $floor_price = floatval($item['statsV2']['floorPrice']['unit']);
+            }
+          }
+
+          $shift = (array_key_exists('oneDayChange', $item['statsV2'])) ? floatval($item['statsV2']['oneDayChange']) : 0;
+
           $result[] = [
             'icon_coin' => $icon_coin_name,
             'preview' => $preview_name,
             'name' => strval($item['name']),
-            'volume' => round(floatval($item['statsV2']['totalVolume']['unit']), 2),
-            'floor_price' => round(floatval($item['statsV2']['floorPrice']['unit']), 2),
-            'shift' => round(floatval($item['statsV2']['oneDayChange']) * 100, 2),
+            'volume' => round($volume, 2),
+            'floor_price' => round($floor_price, 2),
+            'shift' => round($shift * 100, 2),
           ];
         }
 
