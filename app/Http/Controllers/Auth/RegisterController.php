@@ -11,6 +11,8 @@ use App\Models\Orders;
 use App\Models\OrderParameters;
 use Dirape\Token\Token;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\UserPackages;
 
 class RegisterController extends Controller
 {
@@ -82,9 +84,29 @@ class RegisterController extends Controller
 
     $order = Orders::with('parameters')->where('status', '=', '0')->where('end', '>', Carbon::now()->toDateTimeString())->where('token', '=', request()->cookie('order_token'))->get();
 
-    if ($order->count() === 0) {
+    if ($order->count() === 1) {
 
       $order = $order->first();
+      $order_parametrs = $order->getParameters();
+
+      $user_id = User::create([
+        'first_name' => $order_parametrs['first_name'], 
+        'last_name' => $order_parametrs['last_name'],
+        'phone' => $order_parametrs['phone'],
+        'email' => $order_parametrs['email'],
+        'password' => $order_parametrs['password'],
+      ])->id;
+
+      UserPackages::create([
+        'user_id' => $user_id,
+        'package_id' => $order_parametrs['package_id']
+      ])->id;
+
+      $order->update(['status' => 1]);
+
+      return response()->json([
+        'status' => true, 'step'=> 'next'
+      ])->cookie('order_token', null, 0);
     }
 
     return response()->json([

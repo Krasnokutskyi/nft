@@ -31,7 +31,7 @@ class RegisterForm extends JsonFormRequest
       'first_name' => ['required', 'string', 'max: 255'],
       'last_name' => ['required', 'string', 'max: 255'],
       'phone' => ['required', 'phone:AUTO', 'unique:users', new PhoneIntoOrderRule()],
-      'email' => ['required', 'string', 'email', 'max:535', 'unique:users' new EmailIntoOrderRule()],
+      'email' => ['required', 'string', 'email', 'max:535', 'unique:users', new EmailIntoOrderRule()],
       'password' => ['required', 'string', Password::min(6)->letters()->numbers()->mixedCase()->uncompromised(), 'max:535', 'confirmed'],
       'password_confirmation' => ['required', 'same:password'],
       'package' => ['required', 'string', 'exists:packages,id']

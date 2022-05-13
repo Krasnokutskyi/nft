@@ -24,4 +24,17 @@ class Orders extends Model
   {
     return $this->hasMany(OrderParameters::class, 'order_id', 'id');
   }
+
+  public function getParameters()
+  {
+    $result = [];
+
+    $parameters = $this->parameters()->get();
+
+    foreach ($parameters as $parameter) {
+      $result[$parameter->name] = $parameter->value;
+    }
+
+    return $result;
+  }
 }
