@@ -7,7 +7,7 @@
         @include('layouts.headers.header-content')
 
         <div class="wrapper">
-            <div class="downloads__title"><span>Downloads</span>@if($files->count() > 0)<a href="{{ route('storage.content.downloads.allFiles')}}" class="current_downloads" download="all_files.zip" onclick="downloadFile(event, this)">Download All</a>@endif</div>
+            <div class="downloads__title"><span>Downloads</span>@if($files->count() > 0)<a href="{{ route('storage.content.downloads.allFiles')}}" class="current_downloads" download="EliteNFTCourseAll.zip" onclick="downloadFile(event, this)">Download All</a>@endif</div>
             <div class="downloads">
                 @if ($files->count() > 0)
                     @foreach ($files as $file)
