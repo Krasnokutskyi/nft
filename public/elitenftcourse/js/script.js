@@ -26,9 +26,12 @@ $(document).ready(function(){
   });
 
   $("#purchase input[name='package']").change(function() {
+
     var package_id = $(this).val();
     $('#purchase .purchase__summery-package').hide();
-    $('#purchase .purchase__summery-package data-package_id="' + package_id + '"').css('display', 'flex');
+    $('#purchase .purchase__summery-package[data-package_id=\"' + package_id + '\"]').css('display', 'flex');
+
+    setPackageForPaymentSuccessful(package_id);
   });
 
   $('a[href="#next"]').on('click', function(e) {
@@ -40,12 +43,12 @@ $(document).ready(function(){
     form.find('.purchase__step.current').removeClass('current').next().addClass('current');
   });
 
-  $('a[href="#prev"]').on('click', function(e) {
+  $('a[href="#prev"]').bind('click', function(e) {
 
     e.preventDefault();
 
     $(this).parents('.purchase__step.current').removeClass('current').prev().addClass('current');
-    $(this).parents('purchase__steps').find('.purchase__step.current').removeClass('current').prev().addClass('current');
+    $(this).parents('#purchase').find('.purchase__steps .purchase__steps-step.current').removeClass('current').prev().addClass('current');
   });
 
 
@@ -87,12 +90,21 @@ $(document).ready(function(){
       $('#purchase').fadeIn(300);
     }, 350);
 
-    $('input[name="package"][value="' + $(this).attr('data-package_id') + '"]').prop("checked", true);
+    var package_id = $(this).attr('data-package_id');
+
+    $('input[name="package"][value="' + package_id + '"]').prop("checked", true);
+
+    $('#purchase .purchase__summery-package').hide();
+    $('#purchase .purchase__summery-package[data-package_id=\"' + package_id + '\"]').css('display', 'flex');
+
+    setPackageForPaymentSuccessful(package_id);
   });
 
 
   $('.menu a[href^="#"]').on('click', function(e) {
+
     e.preventDefault();
+
     var anchor = $(this).attr('href');
     var headerHeight = $('.header').outerHeight();
     var scrollTo = $(anchor).offset().top;
@@ -148,10 +160,10 @@ function downloadFile (event, a) {
 
       link.href = URL.createObjectURL(data);
       link.download = filename;
-      link.click();
   
       setTimeout(function(){
         preloader.stop();
+        link.click();
       }, 750);
     }
   });
@@ -173,4 +185,20 @@ function showVideo (url_video, preview = '') {
       popup: 'popup-show_video',
     }
   });
+}
+
+function setPackageForPaymentSuccessful(package_id) {
+
+  if ($('#packages').length) {
+
+    var package = $('#packages').find('.packages__item[data-package_id=\"' + package_id + '\"]');
+    var package_image = $(package).find('.packages__img').html();
+    var package_name = $(package).find('.packages__info .packages__title').html();
+    var package_price = $(package).find('.packages__price .packages__price-current').html();
+
+    var purchase = $('#purchase .purchase__step .purchase__finish[object-status="true"]');
+    $(purchase).find('.purchase__finish-img').html(package_image);
+    $(purchase).find('.purchase__finish-subtitle').html(package_name);
+    $(purchase).find('.purchase__finish-price').html(package_price);
+  }
 }

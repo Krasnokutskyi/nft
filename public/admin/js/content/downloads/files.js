@@ -65,8 +65,11 @@ function downloadFile (event, a) {
       link.href = URL.createObjectURL(data);
       link.download = filename;
       link.click();
-  
-      setTimeout(preloader.stop('body'), 750);
+
+      setTimeout(function(){
+        preloader.stop('body');
+        link.click();
+      }, 750);
     }
   }).fail(function (jqXHR, textStatus) {
     Swal.fire({

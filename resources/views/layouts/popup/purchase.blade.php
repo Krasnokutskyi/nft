@@ -184,11 +184,9 @@
             <div class="purchase__row">
                 <div class="purchase__finish" object-status="true">
                     <div class="purchase__finish-title">Payment Successful</div>
-                    <div class="purchase__finish-img">
-                        <img src="/elitenftcourse/images/icon-beginner.png" alt="Beginner">
-                    </div>
-                    <div class="purchase__finish-subtitle">Beginner</div>
-                    <div class="purchase__finish-price">$235</div>
+                    <div class="purchase__finish-img"></div>
+                    <div class="purchase__finish-subtitle"></div>
+                    <div class="purchase__finish-price"></div>
                     <div class="purchase__finish-link">
                         <a href="#">Go to Course</a>
                     </div>

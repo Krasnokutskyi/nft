@@ -85,7 +85,7 @@
                     <div class="packages__list">
 
                         @foreach ($packages as $package)
-                            <div class="packages__item packages__item_beginner">
+                            <div class="packages__item" data-package_id="{{ $package->id }}">
                                 <div class="packages__img">
                                     <img src="/uploads/images/packages/preview/{{ $package->preview }}" alt="{{ $package->name }}">
                                 </div>
