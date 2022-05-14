@@ -26,6 +26,6 @@ class Packages extends Model
 
   public function users()
   {
-   return $this->hasManyThrough(User::class, UserPackages::class, 'user_id', 'id', 'id', 'package_id');
+   return $this->hasManyThrough(User::class, UserPackages::class, 'package_id', 'id', 'id', 'user_id');
   }
 }

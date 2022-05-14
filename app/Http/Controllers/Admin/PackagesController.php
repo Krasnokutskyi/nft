@@ -17,7 +17,7 @@ class PackagesController extends AdminController
 {
   public function packages(Request $request)
   {
-    $packages = Packages::orderBy('position', 'asc')->get();
+    $packages = Packages::with('users')->orderBy('position', 'asc')->get();
     return view('admin.packages.packages', compact('packages'));
   }
 
