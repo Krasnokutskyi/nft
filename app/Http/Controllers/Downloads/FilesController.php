@@ -14,7 +14,7 @@ class FilesController extends Controller
 {
   public function files(Request $request)
   {
-    $files = Files::orderBy('created_at', 'desc')->paginate(7);
+    $files = Files::with('type')->orderBy('created_at', 'desc')->paginate(7);
     return view('content.downloads.files', compact('files'));
   }
 

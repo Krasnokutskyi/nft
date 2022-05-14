@@ -22,7 +22,7 @@ class FilesController extends AdminController
 
   public function files()
   {
-    $files = Files::orderBy('id', 'desc')->paginate(15);
+    $files = Files::with('type')->orderBy('created_at', 'desc')->paginate(15);
     return view('admin.content.downloads.files', compact('files'));
   }
 

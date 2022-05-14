@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use App\Models\DownloadsFilesPachages;
+use App\Models\DownloadsFileTypes;
 
 class DownloadsFiles extends Model
 {
@@ -22,6 +23,11 @@ class DownloadsFiles extends Model
   public function packages()
   {
     return $this->hasManyThrough(Packages::class, DownloadsFilesPachages::class, 'file_id', 'id', 'id', 'package_id');
+  }
+
+  public function type()
+  {
+    return $this->hasMany(DownloadsFileTypes::class, 'id', 'type_id');
   }
 
   public static function getPreviewFileById($file_id)

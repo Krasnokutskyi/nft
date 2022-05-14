@@ -35,7 +35,7 @@
               <h3 class="mb-0">Edit post</h3>
             </div>
             <div class="card-body">
-              <form method="POST" class="ajax-form custom-form edit_post-form" enctype="multipart/form-data">
+              <form method="POST" preloader-ajax-form=".card" class="ajax-form custom-form edit_post-form" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group has-validation">
                   <label for="title-input" class="form-control-label">Title:</label>

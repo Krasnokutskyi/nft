@@ -58,7 +58,7 @@
                         {{ $file->title }}
                       </td>
                       <td class="budget">
-                        Presentation
+                        {{ $file->type->first()->title }}
                       </td>
                       <td class="text-right">
                         <div class="dropdown">
@@ -66,7 +66,7 @@
                             <i class="fas fa-ellipsis-v"></i>
                           </a>
                           <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                            <a class="dropdown-item" href="{{ route('storage.content.downloads.file', ['file' => $file->file]) }}" download="{{ $file->title . '.' . pathinfo(route('storage.content.downloads.preview', ['image' => $file->preview]), PATHINFO_EXTENSION) }}" onclick="downloadFile(event, this)">Download</a>
+                            <a class="dropdown-item" href="{{ route('storage.content.downloads.file', ['file' => $file->file]) }}" download="{{ $file->title . '.' . pathinfo(route('storage.content.downloads.file', ['file' => $file->file]), PATHINFO_EXTENSION) }}" onclick="downloadFile(event, this)">Download</a>
                             <a class="dropdown-item" href="{{ route('admin.downloads.files.edit', ['file_id' => $file->id]) }}">Edit</a>
                             <a class="dropdown-item" href="{{ route('admin.downloads.files.deleteAction', ['file_id' => $file->id]) }}"  onclick="remove_file(this)">Delete</a>
                           </div>
