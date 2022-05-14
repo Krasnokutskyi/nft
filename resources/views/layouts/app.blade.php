@@ -51,7 +51,12 @@
 
 <body @if(Route::currentRouteName() !== 'home') class="inner" @endif>
 
+    {{-- Content --}}
     @yield('content')
+
+    {{-- PopUp --}}
+    @include('layouts.popup.terms')
+    @include('layouts.popup.privacy')
 
     {{ HTML::script('/elitenftcourse/js/script.js') }}
 
