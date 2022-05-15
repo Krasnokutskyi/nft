@@ -53,7 +53,7 @@
     float: right;
 }
 
-.blog__item-preview>img {
+.blog__item-preview > img {
     border-radius: 0.75rem;
     width: 18.75rem;
     display: inline-block;
@@ -63,7 +63,6 @@
 .blog__item {
     margin: 1rem 0;
 }
-
 .blog__item-duration {
     font-family: 'Whyte';
     font-style: normal;

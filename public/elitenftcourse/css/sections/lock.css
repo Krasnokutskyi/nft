@@ -1,0 +1,66 @@
+/* Default lock */
+.lock-container
+{	
+	box-sizing: border-box;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	background: rgba(0, 0, 0, 0.75);
+	display: inline-flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
+.lock-container .lock
+{
+	text-align: center;
+	margin: 0px 15px;
+	padding: 18px 17px;
+	border-radius: 0.75rem;
+	border: 1px solid #E5F43B;
+	cursor: pointer;
+	transition: 0.35s;
+	max-width: 230px;
+	width: 100%;
+}
+.lock-container .lock:hover
+{
+	background-color: #E5F43B;
+	color: #222;
+}
+.lock-container .lock > .title
+{
+	font-size: 1.3rem;
+	line-height: 1.4;
+	margin: 0px;
+}
+.lock-container .lock > .unlock
+{
+	cursor: pointer;
+}
+.lock-container .lock > .title span
+{
+	margin-left: 3px;
+}
+
+/* Item lock */
+.item-lock .lock-container .lock
+{
+    max-width: 160px;
+    padding: 15px;
+}
+.item-lock .lock-container .lock > .title
+{
+    font-size: 1rem;
+}
+
+/* Videos item lock */
+.videos__item.item-lock
+{
+	padding-top: 0px !important;
+}

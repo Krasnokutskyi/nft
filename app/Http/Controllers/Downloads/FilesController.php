@@ -9,12 +9,13 @@ use Illuminate\Support\Facades\Storage;
 use ZipArchive;
 use Response;
 use Illuminate\Support\Str;
+use App\Services\Access\AccessService as Access;
 
 class FilesController extends Controller
 {
   public function files(Request $request)
   {
-    $files = Files::with('type')->orderBy('created_at', 'desc')->paginate(7);
+    $files = Files::with('type')->where('access', '!=', 'nobody')->orderBy('created_at', 'desc')->paginate(7);
     return view('content.downloads.files', compact('files'));
   }
 
@@ -24,12 +25,15 @@ class FilesController extends Controller
 
     if ($files->count() > 0) {
 
-      $file_path = 'downloads/files/' . $files->first()->file;
+      if (Access::content()->downloads()->isThereAccessToFile($files->first()->id)) {
 
-      if (Storage::disk('content')->exists($file_path)) {
-        $download_file = Storage::disk('content')->path($file_path);
-        $new_name = $files->first()->title . '.' . pathinfo($download_file, PATHINFO_EXTENSION);
-        return response()->download($download_file, $new_name);
+        $file_path = 'downloads/files/' . $files->first()->file;
+
+        if (Storage::disk('content')->exists($file_path)) {
+          $download_file = Storage::disk('content')->path($file_path);
+          $new_name = $files->first()->title . '.' . pathinfo($download_file, PATHINFO_EXTENSION);
+          return response()->download($download_file, $new_name);
+        }
       }
     }
 
@@ -48,6 +52,11 @@ class FilesController extends Controller
         if ($zip->open($zipFile, ZipArchive::CREATE) === TRUE) {
 
           foreach ($files as $key => $file) {
+
+            if (!Access::content()->downloads()->isThereAccessToFile($file->id)) {
+              continue;
+            }
+
             $file_path = 'downloads/files/' . $file->file;
             if (Storage::disk('content')->exists($file_path)) {
               $download_file = Storage::disk('content')->path($file_path);

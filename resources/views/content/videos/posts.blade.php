@@ -8,6 +8,7 @@
         
         <div class="wrapper">
             <div class="inner__title"><span>Videos</span></div>
+            
             <div class="category blog__cat inner__cat">
                 <a href="{{ route('videos.posts') }}" class="@if (Route::currentRouteName() === 'videos.posts') current @endif">All</a>
                 @foreach ($categories as $category)
@@ -16,12 +17,13 @@
                     @endif
                 @endforeach
             </div>
+
             <div class="videos">
                 <div class="row">
                     @if ($posts->count() > 0)
                         @foreach ($posts as $post)
                             <div class="col-md-3 col-sm-6 col-xs-12">
-                                <div class="videos__item">
+                                <div class="videos__item item-lock">
                                     <a href="#" class="videos__item-preview">
                                         <div class="show_video">
                                             <img src="{{ route('storage.content.video.preview', ['image' => $post->preview]) }}" alt="{{ $post->title }}" onclick="showVideo('{{ route('storage.content.video', ['video' => $post->video]) }}', '{{ route('storage.content.video.preview', ['image' => $post->preview]) }}')">
@@ -32,16 +34,28 @@
                                     <div class="videos__item-duration">
                                         {{ $post->playtime }}
                                     </div>
+                                    @if(!Access::content()->videos()->isThereAccessToPost($post->id))
+                                      @include('layouts.lock')
+                                    @endif
                                 </div>
                             </div>
                         @endforeach
                     @else
                         <p class="lack_posts">Videos haven't been found.</p>
                     @endif
+
+                    @if (Route::currentRouteName() === 'videos.postsByCategory' and !Access::content()->videos()->isThereAccessToCategory(Request::route('alias')))
+                        @include('layouts.lock')
+                    @endif
                 </div>
             </div>
+
             @if($posts->lastPage() > 1)
                 {{ $posts->links('layouts.pagination') }}
+            @endif
+
+            @if(!Access::content('videos')->isThereAccessToContent())
+                @include('layouts.lock')
             @endif
         </div>
 

@@ -22,7 +22,7 @@
           @if ($posts->count() > 0)
             @foreach ($posts as $post)
               <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="blog__item">
+                <div class="blog__item item-lock">
                   <a href="{{ route('blog.post', ['alias' => $post->alias]) }}" class="blog__item-preview">
                     <img src="{{ route('storage.content.blog.preview', ['image' => $post->preview]) }}" alt="{{ $post->title }}">
                     @if ($post->categories->count() > 0)
@@ -34,12 +34,20 @@
                       </div>
                     @endif
                     <div class="blog__item-title">{{ $post->title }}</div>
+
+                    @if(!Access::content()->blog()->isThereAccessToPost($post->alias))
+                      @include('layouts.lock')
+                    @endif
                   </a>
                 </div>
               </div>
             @endforeach
           @else
             <p class="lack_posts">Posts haven't been found.</p>
+          @endif
+
+          @if (Route::currentRouteName() === 'blog.postsByCategory' and !Access::content()->blog()->isThereAccessToCategory(Request::route('alias')))
+            @include('layouts.lock')
           @endif
 
         </div>
@@ -50,6 +58,10 @@
             @endif
         </div>
       </div>
+
+      @if(!Access::content('blog')->isThereAccessToContent())
+        @include('layouts.lock')
+      @endif
     </div>
 
     @include('layouts.footers.footer-content')

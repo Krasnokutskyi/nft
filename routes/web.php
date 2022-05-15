@@ -53,4 +53,7 @@ Route::middleware(["auth:web"])->group(function() {
   
   // Market Activity
   Route::get('/market-activity/', [App\Http\Controllers\MarketActivity\MarketActivityController::class, 'index'])->name('marketActivity');
+
+  // Orders
+  Route::post('/orders/change-package/', [App\Http\Controllers\OrdersController::class, 'changePackageAction'])->name('orders.changePackageAction');
 });

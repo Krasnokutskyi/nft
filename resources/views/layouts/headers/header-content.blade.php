@@ -4,9 +4,27 @@
         <ul>
             <li><a href="{{ route('videos.posts') }}">Videos</a></li>
             <li><a href="{{ route('downloads.files') }}">Downloads</a></li>
-            <li><a href="{{ route('calendar') }}">Calendar</a></li>
+            <li>
+                @if (!Access::content('calendar')->isThereAccessToContent())
+                    <a href="{{ route('calendar') }}" onclick="setLockContent(event)">
+                        <i class="fa-solid fa-lock"></i>
+                        Calendar
+                    </a>
+                @else
+                    <a href="{{ route('calendar') }}">Calendar</a>
+                @endif
+            </li>
             <li><a href="{{ route('blog.posts') }}">Blog</a></li>
-            <li><a href="{{ route('marketActivity') }}">Market Activity</a></li>
+            <li>
+                @if (!Access::content('market activity')->isThereAccessToContent())
+                    <a href="{{ route('marketActivity') }}" onclick="setLockContent(event)">
+                        <i class="fa-solid fa-lock"></i>
+                        Market Activity
+                    </a>
+                @else
+                    <a href="{{ route('marketActivity') }}">Market Activity</a>
+                @endif
+            </li>
         </ul>
     </nav>
     <label class="menu__btn" for="menu__toggle">

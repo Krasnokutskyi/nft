@@ -12,12 +12,13 @@ use Response;
 use App\Helpers\Access\AccessVideosCategoryHelper;
 use getID3;
 use Route;
+use App\Services\Access\AccessService as Access;
 
 class PostsController extends Controller
 {
   public function posts(Request $request)
   {
-    $categories = Categories::with('posts')->orderBy('created_at', 'desc')->get();
+    $categories = Categories::with('posts')->where('access', '!=', 'nobody')->orderBy('created_at', 'desc')->get();
 
     if (Route::currentRouteName() === 'videos.postsByCategory') {
 
@@ -27,11 +28,11 @@ class PostsController extends Controller
         abort(404);
       }
 
-      $posts = $current_category->first()->posts()->orderBy('created_at', 'desc')->paginate(8);
+      $posts = $current_category->first()->posts()->where('access', '!=', 'nobody')->orderBy('created_at', 'desc')->paginate(8);
 
     } else {
 
-      $posts = Posts::with('categories')->orderBy('created_at', 'desc')->paginate(8);
+      $posts = Posts::with('categories')->where('access', '!=', 'nobody')->orderBy('created_at', 'desc')->paginate(8);
     }
 
     foreach ($posts as $key => &$post) {
@@ -47,12 +48,14 @@ class PostsController extends Controller
   {
     $posts = Posts::where('video', '=', strval($request->route('video')));
     if ($posts->count() > 0) {
-      $video_path = 'video/' . $posts->first()->video;
-      if (Storage::disk('content')->exists($video_path)) {
-        $video = Storage::disk('content')->get($video_path);
-        $response = Response::make($video);
-        $response->header("Content-Type", Storage::disk('content')->mimeType($video_path));
-        return $response;
+      if (Access::content()->videos()->isThereAccessToPost($post->first()->id)) {
+        $video_path = 'video/' . $posts->first()->video;
+        if (Storage::disk('content')->exists($video_path)) {
+          $video = Storage::disk('content')->get($video_path);
+          $response = Response::make($video);
+          $response->header("Content-Type", Storage::disk('content')->mimeType($video_path));
+          return $response;
+        }
       }
     } 
 

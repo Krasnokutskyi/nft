@@ -10,12 +10,13 @@ use App\Models\BlogCategories as Categories;
 use App\Models\BlogCategoriesPosts as CategoriesPosts;
 use Illuminate\Support\Facades\Storage;
 use Response;
+use App\Services\Access\AccessService as Access;
 
 class PostsController extends Controller
 {
   public function posts(Request $request)
   {
-    $categories = Categories::orderBy('created_at', 'desc')->get();
+    $categories = Categories::with('posts')->where('access', '!=', 'nobody')->orderBy('created_at', 'desc')->get();
 
     if (Route::currentRouteName() === 'blog.postsByCategory') {
 
@@ -25,11 +26,11 @@ class PostsController extends Controller
         abort(404);
       }
 
-      $posts = $current_category->first()->posts()->orderBy('created_at', 'desc')->paginate(8);
+      $posts = $current_category->first()->posts()->where('access', '!=', 'nobody')->orderBy('created_at', 'desc')->paginate(8);
       
     } else {
 
-      $posts = Posts::with('categories')->orderBy('created_at', 'desc')->paginate(8);
+      $posts = Posts::with('categories')->where('access', '!=', 'nobody')->orderBy('created_at', 'desc')->paginate(8);
     }
 
     return view('content.blog.posts', compact('categories', 'posts'));
@@ -41,8 +42,10 @@ class PostsController extends Controller
 
     if ($post->count() === 1) {
       $post = $post->first();
-      $like_posts = Posts::inRandomOrder()->with('categories')->whereNotIn('id', [$post->id])->orderBy('created_at', 'desc')->limit(8)->get();
-      return view('content.blog.post', compact('post', 'like_posts'));
+      if (Access::content()->blog()->isThereAccessToPost($post->alias)) {
+        $like_posts = Posts::inRandomOrder()->with('categories')->whereNotIn('id', [$post->id])->orderBy('created_at', 'desc')->limit(8)->get();
+        return view('content.blog.post', compact('post', 'like_posts'));
+      }
     }
 
     abort(404);

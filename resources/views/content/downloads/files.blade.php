@@ -11,7 +11,8 @@
             <div class="downloads">
                 @if ($files->count() > 0)
                     @foreach ($files as $file)
-                        <div class="row row_box">
+                        <div class="row row_box item-lock">
+                            
                             <div class="downloads__box-item">
                                 <div class="downloads__box-img-title">
                                     <img src="{{ route('storage.content.downloads.preview', ['image' => $file->preview]) }}" alt="{{ $file->title }}">
@@ -27,6 +28,9 @@
                                 </div>
                             </div>
 
+                            @if(!Access::content()->downloads()->isThereAccessToFile($file->id))
+                                @include('layouts.lock')
+                            @endif
                         </div>
                     @endforeach
                 @else
@@ -35,6 +39,10 @@
             </div>
             @if($files->lastPage() > 1)
                 {{ $files->links('layouts.pagination') }}
+            @endif
+
+            @if(!Access::content('downloads')->isThereAccessToContent())
+                @include('layouts.lock')
             @endif
         </div>
 

@@ -382,7 +382,5 @@
     {{-- PopUp --}}
     @include('layouts.popup.purchase')
     @include('layouts.popup.login')
-
-    {{ HTML::script('/elitenftcourse/js/ajax-form.js') }}
-
+    
 @endsection

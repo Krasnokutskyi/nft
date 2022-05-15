@@ -8,6 +8,9 @@
 
     <title>Elite NFT Course</title>
 
+    {{-- Icons --}}
+    {{ HTML::script('https://use.fontawesome.com/releases/v6.1.1/js/all.js', ['data-mutate-approach' => 'sync']) }}
+
     {{ HTML::style('/elitenftcourse/css/style.css') }}
 
     <!-- Jquery -->
@@ -26,9 +29,6 @@
     @endif
 
     @if (Route::currentRouteName() === 'calendar')
-
-        {{-- Icons --}}
-        {{ HTML::style('/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}
 
         <!-- Bootstrap -->
         {{ HTML::script('/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}
@@ -57,7 +57,11 @@
     {{-- PopUp --}}
     @include('layouts.popup.terms')
     @include('layouts.popup.privacy')
+    @if(auth('web')->check())
+        @include('layouts.popup.package-change')
+    @endif
 
+    {{ HTML::script('/elitenftcourse/js/ajax-form.js') }}
     {{ HTML::script('/elitenftcourse/js/script.js') }}
 
 </body>

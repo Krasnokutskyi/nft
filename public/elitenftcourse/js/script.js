@@ -1,5 +1,8 @@
 $(document).ready(function(){
 
+  // Remove comments
+  removeComments();
+
   // Purchase
   $('#purchase .purchase__summery-package').not('.current').hide();
 
@@ -137,6 +140,64 @@ $(document).ready(function(){
       $('input[name="package"]:first').prop("checked", true);
     }
   }
+
+  // If there are siblings lock container
+  $('.lock-container').siblings().find('.lock-container').remove();
+
+  // Lock
+  $('.lock-container').parent().closest('div').each(function() {
+
+    $(this).css({
+      'box-sizing': 'border-box',
+      'position': 'relative',
+      'overflow': 'hidden',
+      'padding': $(this).css('padding') == '0px' ? '10px' : $(this).css('padding'),
+    });
+
+    $(this).find('.lock-container').css({
+      'border-radius': $(this).css('border-radius') == '0px' ? '15px' : $(this).css('border-radius'),
+    });
+  });
+
+  $('.lock-container').parent().closest('div').not('.item-lock').css({
+    'margin-top': '5px',
+  });
+
+  // UnLock
+  $('.lock-container .lock').hover(
+    function() {
+      $(this).find('svg').replaceWith('<i class="fa-solid fa-unlock"></i>');
+      $(this).find('span').text('Unlock content');
+      removeComments();
+    },
+    function() {
+      $(this).find('svg').replaceWith('<i class="fa-solid fa-lock"></i>');
+      $(this).find('span').text('Access is denied!');
+      removeComments();
+    }
+  );
+
+  $('#package-change a[href="#change_package"]').bind('click', function(e) {
+
+    var package_id = $(this).attr('data-package_id');
+
+    $('#package-change .purchase__summery-package').css('display', 'flex');
+    $('#package-change .purchase__summery-package').not('[data-package_id=\"' + package_id + '\"]').hide();
+
+    $('#package-change .purchase__step form input[name="package"]').val(package_id);
+
+    $('#package-change .purchase__step.current').removeClass('current').next().addClass('current');
+
+    var package = $('#package-change').find('.packages__item[data-package_id=\"' + package_id + '\"]');
+    var package_image = $(package).find('.packages__img').html();
+    var package_name = $(package).find('.packages__info .packages__title').html();
+    var package_price = $(package).find('.packages__price .packages__price-current').html();
+
+    var purchase = $('#package-change .purchase__step .purchase__finish[object-status="true"]');
+    $(purchase).find('.purchase__finish-img').html(package_image);
+    $(purchase).find('.purchase__finish-subtitle').html(package_name);
+    $(purchase).find('.purchase__finish-price').html(package_price);
+  });
 });
 
 function downloadFile (event, a) {
@@ -166,6 +227,15 @@ function downloadFile (event, a) {
         link.click();
       }, 750);
     }
+  }).fail(function (jqXHR, textStatus) {
+    setTimeout(function(){
+      preloader.stop();
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Server connection error!'
+      });
+    }, 750);
   });
 }
 
@@ -201,4 +271,20 @@ function setPackageForPaymentSuccessful(package_id) {
     $(purchase).find('.purchase__finish-subtitle').html(package_name);
     $(purchase).find('.purchase__finish-price').html(package_price);
   }
+}
+
+function setLockContent(events)
+{
+  events.preventDefault();
+  $('#package-change').fadeIn(300);
+  preloader.stopScroll();
+}
+
+function removeComments()
+{
+  $('*').contents().each(function() {
+    if(this.nodeType === Node.COMMENT_NODE) {
+      $(this).remove();
+    }
+  });
 }

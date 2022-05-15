@@ -182,6 +182,7 @@ return [
         Propaganistas\LaravelPhone\PhoneServiceProvider::class,
         Dirape\Token\TokenServiceProvider::class,
         Kaishiyoku\Validation\Color\ServiceProvider::class,
+        App\Services\Access\AccessService::class,
     ],
 
     /*
@@ -242,6 +243,7 @@ return [
         'HTML' => Collective\Html\HtmlFacade::class,
         'HTML' => Collective\Html\HtmlFacade::class,
         'Token'=>\Dirape\Token\Facades\Facade::class,
+        'Access' => App\Services\Access\AccessService::class,
     ],
 
 ];

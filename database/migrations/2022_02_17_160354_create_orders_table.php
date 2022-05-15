@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
       $table->string('token', 200)->unique();
       $table->enum('payment_method', ['fibonatix']);
       $table->decimal('amount', 19, 2);
-      $table->enum('type', ['user_registration']);
+      $table->enum('type', ['user_registration', 'change_package']);
       $table->enum('status', [1, 0])->default(0);
       $table->timestamp('end');
       $table->timestamps();
