@@ -7,7 +7,7 @@
             <li>
                 @if (!Access::content('calendar')->isThereAccessToContent())
                     <a href="{{ route('calendar') }}" onclick="setLockContent(event)">
-                        <i class="fa-solid fa-lock"></i>
+                        <i class="fas fa-lock"></i>
                         Calendar
                     </a>
                 @else
@@ -18,7 +18,7 @@
             <li>
                 @if (!Access::content('market activity')->isThereAccessToContent())
                     <a href="{{ route('marketActivity') }}" onclick="setLockContent(event)">
-                        <i class="fa-solid fa-lock"></i>
+                        <i class="fas fa-lock"></i>
                         Market Activity
                     </a>
                 @else

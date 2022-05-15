@@ -9,7 +9,7 @@
     <title>Elite NFT Course</title>
 
     {{-- Icons --}}
-    {{ HTML::script('https://use.fontawesome.com/releases/v6.1.1/js/all.js', ['data-mutate-approach' => 'sync']) }}
+    {{ HTML::script('https://use.fontawesome.com/releases/v5.15.4/js/all.js', ['data-mutate-approach' => 'sync']) }}
 
     {{ HTML::style('/elitenftcourse/css/style.css') }}
 

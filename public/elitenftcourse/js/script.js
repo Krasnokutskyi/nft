@@ -166,12 +166,12 @@ $(document).ready(function(){
   // UnLock
   $('.lock-container .lock').hover(
     function() {
-      $(this).find('svg').replaceWith('<i class="fa-solid fa-unlock"></i>');
+      $(this).find('svg').replaceWith('<i class="fas fa-unlock"></i>');
       $(this).find('span').text('Unlock content');
       removeComments();
     },
     function() {
-      $(this).find('svg').replaceWith('<i class="fa-solid fa-lock"></i>');
+      $(this).find('svg').replaceWith('<i class="fas fa-lock"></i>');
       $(this).find('span').text('Access is denied!');
       removeComments();
     }
