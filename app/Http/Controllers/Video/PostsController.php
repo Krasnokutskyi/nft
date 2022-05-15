@@ -46,10 +46,10 @@ class PostsController extends Controller
 
   public function showVideo(Request $request)
   {
-    $posts = Posts::where('video', '=', strval($request->route('video')));
-    if ($posts->count() > 0) {
+    $post = Posts::where('video', '=', strval($request->route('video')));
+    if ($post->count() > 0) {
       if (Access::content()->videos()->isThereAccessToPost($post->first()->id)) {
-        $video_path = 'video/' . $posts->first()->video;
+        $video_path = 'video/' . $post->first()->video;
         if (Storage::disk('content')->exists($video_path)) {
           $video = Storage::disk('content')->get($video_path);
           $response = Response::make($video);
