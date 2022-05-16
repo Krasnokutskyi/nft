@@ -13,6 +13,7 @@ use Validator;
 use App\Http\Requests\Admin\Blog\CreatePostForm;
 use App\Http\Requests\Admin\Blog\UpdatePostForm;
 use Illuminate\Support\Facades\Storage;
+use App\Helpers\Storage\StorageHelper;
 
 class PostsController extends AdminController
 {
@@ -57,7 +58,7 @@ class PostsController extends AdminController
 
       $post = $post->first();
 
-      $post->preview = Posts::getPreviewPostById($post->id);
+      $post->preview = StorageHelper::blog()->posts()->getInfoAboutPreview($post->id);
 
       $categories = Categories::orderBy('created_at', 'desc')->get();
       $packages =  Packages::orderBy('created_at', 'desc')->get();
@@ -137,5 +138,18 @@ class PostsController extends AdminController
     }
 
     return response()->json(['result' => false]);
+  }
+
+  public function showPostPreview(Request $request)
+  { 
+    $image = strval($request->route('image'));
+
+    $preview = StorageHelper::blog()->posts()->preview($image);
+
+    if (is_null($preview)) {
+      abort(404);
+    }
+
+    return $preview;
   }
 }

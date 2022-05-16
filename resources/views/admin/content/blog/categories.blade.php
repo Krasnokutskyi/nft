@@ -57,7 +57,6 @@
                             <i class="fas fa-ellipsis-v"></i>
                           </a>
                           <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                            <a class="dropdown-item" href="{{ route('blog.postsByCategory', ['alias' => $category->alias]) }}">Show</a>
                             <a class="dropdown-item" href="{{ route('admin.blog.updateCategory', ['category_id' => $category->id]) }}">Edit</a>
                             <a class="dropdown-item" href="{{ route('admin.blog.deleteCategoryAction', ['category_id' => $category->id]) }}"  onclick="remove_category(this)">Delete</a>
                           </div>

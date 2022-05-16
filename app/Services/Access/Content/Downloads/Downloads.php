@@ -16,10 +16,6 @@ class Downloads
 
   public function isThereAccessToFile(mixed $file_id): bool
   {
-    if (auth('admin')->check()) {
-      return true;
-    }
-
     $file_id = intval($file_id);
 
     if ($this->content->isThereAccessToContent()) {

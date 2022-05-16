@@ -13,6 +13,7 @@ use Validator;
 use App\Http\Requests\Admin\Video\CreatePostForm;
 use App\Http\Requests\Admin\Video\UpdatePostForm;
 use Illuminate\Support\Facades\Storage;
+use App\Helpers\Storage\StorageHelper;
 
 class PostsController extends AdminController
 {
@@ -56,8 +57,8 @@ class PostsController extends AdminController
     if ($post->count() === 1) {
 
       $post = $post->first();
-      $post->video = Posts::getVideoByPostId($post->id);
-      $post->preview = Posts::getPreviewVideoById($post->id);
+      $post->video = StorageHelper::videos()->posts()->getInfoAboutVideo($post->id);
+      $post->preview = StorageHelper::videos()->posts()->getInfoAboutPreviewVideo($post->id);
       $categories = Categories::all();
       $packages = Packages::all();
 
@@ -156,5 +157,31 @@ class PostsController extends AdminController
     }
 
     return response()->json(['result' => false]);
+  }
+
+  public function showVideo(Request $request)
+  {
+    $video = strval($request->route('video'));
+
+    $video = StorageHelper::videos()->posts()->video($video);
+
+    if (is_null($video)) {
+      abort(404);
+    }
+
+    return $video;
+  }
+
+  public function showVideoPreview(Request $request)
+  {
+    $image = strval($request->route('image'));
+
+    $preview = StorageHelper::videos()->posts()->preview($image);
+
+    if (is_null($preview)) {
+      abort(404);
+    }
+
+    return $preview;
   }
 }

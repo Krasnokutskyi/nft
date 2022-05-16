@@ -17,10 +17,6 @@ class Blog
 
   public function isThereAccessToCategory(mixed $category_alias): bool
   {
-    if (auth('admin')->check()) {
-      return true;
-    }
-
     $category_alias = strval($category_alias);
 
     if ($this->content->isThereAccessToContent()) {
@@ -49,10 +45,6 @@ class Blog
 
   public function isThereAccessToPost(mixed $post_alias): bool
   {
-    if (auth('admin')->check()) {
-      return true;
-    }
-
     $post_alias = strval($post_alias);
 
     if ($this->content->isThereAccessToContent()) {

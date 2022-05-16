@@ -30,14 +30,19 @@ class Authenticate extends Middleware
    */
   public function handle($request, Closure $next, ...$guards)
   {
-    if (($request->routeIs('admin.*') or in_array('admin', $guards, true)) and !auth('admin')->check()) {
-      return redirect()->route('admin.login');
+    if ($request->routeIs('admin.*') or in_array('admin', $guards, true)) {
+
+      if (!auth('admin')->check()) {
+        return redirect()->route('admin.login');
+      }
+
+    } else {
+
+      if (!auth('web')->check()) {
+        return redirect()->route('home');
+      }
     }
 
-    if (auth('web')->check() or auth('admin')->check()) {
-      return $next($request);
-    }
-    
-    return redirect()->route('home');
+    return $next($request);
   }
 }

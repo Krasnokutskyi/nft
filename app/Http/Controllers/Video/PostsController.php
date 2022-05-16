@@ -8,11 +8,11 @@ use App\Models\VideoPosts as Posts;
 use App\Models\VideoCategories as Categories;
 use App\Models\VideoCategoriesPosts as CategoriesPosts;
 use Illuminate\Support\Facades\Storage;
-use Response;
 use App\Helpers\Access\AccessVideosCategoryHelper;
+use App\Services\Access\AccessService as Access;
+use App\Helpers\Storage\StorageHelper;
 use getID3;
 use Route;
-use App\Services\Access\AccessService as Access;
 
 class PostsController extends Controller
 {
@@ -46,36 +46,35 @@ class PostsController extends Controller
 
   public function showVideo(Request $request)
   {
-    $post = Posts::where('video', '=', strval($request->route('video')));
+    $video = strval($request->route('video'));
+
+    $post = Posts::where('access', '!=', 'nobody')->where('video', '=', $video);
+
     if ($post->count() > 0) {
       if (Access::content()->videos()->isThereAccessToPost($post->first()->id)) {
-        $video_path = 'video/' . $post->first()->video;
-        if (Storage::disk('content')->exists($video_path)) {
-          $video = Storage::disk('content')->get($video_path);
-          $response = Response::make($video);
-          $response->header("Content-Type", Storage::disk('content')->mimeType($video_path));
-          return $response;
+
+        $video = StorageHelper::videos()->posts()->video($video);
+
+        if (!is_null($video)) {
+          return $video;
         }
       }
-    } 
+    }
+
 
     abort(404);
   }
 
   public function showVideoPreview(Request $request)
   {
-    $post = Posts::where('preview', '=', strval($request->route('image')));
+    $image = strval($request->route('image'));
 
-    if ($post->count() > 0) {
-      $preview_path = 'video/preview/' . $post->first()->preview;
-      if (Storage::disk('content')->exists($preview_path)) {
-        $preview = Storage::disk('content')->get($preview_path);
-        $response = Response::make($preview);
-        $response->header("Content-Type", Storage::disk('content')->mimeType($preview_path));
-        return $response;
-      }
+    $preview = StorageHelper::videos()->posts()->preview($image);
+
+    if (Posts::where('access', '!=', 'nobody')->where('preview', '=', $image)->count() === 0 or is_null($preview)) {
+      abort(404);
     }
 
-    abort(404);
+    return $preview;
   }
 }

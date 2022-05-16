@@ -17,10 +17,6 @@ class Videos
 
   public function isThereAccessToCategory(mixed $category_alias): bool
   {
-    if (auth('admin')->check()) {
-      return true;
-    }
-
     $category_alias = strval($category_alias);
 
     if ($this->content->isThereAccessToContent()) {

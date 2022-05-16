@@ -62,7 +62,6 @@
                             <i class="fas fa-ellipsis-v"></i>
                           </a>
                           <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                            <a class="dropdown-item" href="{{ route('blog.post', ['alias' => $post->alias]) }}">Show</a>
                             <a class="dropdown-item" href="{{ route('admin.blog.updatePost', ['post_id' => $post->id]) }}">Edit</a>
                             <a class="dropdown-item" href="{{ route('admin.blog.deletePostAction', ['post_id' => $post->id]) }}"  onclick="remove_post(this)">Delete</a>
                           </div>

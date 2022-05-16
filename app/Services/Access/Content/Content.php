@@ -19,10 +19,6 @@ class Content
   {
     $content = (is_null($content)) ? $this->content : strval($content);
 
-    if (auth('admin')->check()) {
-      return true;
-    }
-
     if (auth('web')->check()) {
 
       $user = auth('web')->user()->load(['packages']);

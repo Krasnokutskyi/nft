@@ -41,6 +41,7 @@ Route::middleware("auth:admin")->group(function() {
   Route::get('/admin/content/blog/posts/edit/{post_id}/', [App\Http\Controllers\Admin\Blog\PostsController::class, 'update'])->name('blog.updatePost');
   Route::post('/admin/content/blog/posts/edit/{post_id}/', [App\Http\Controllers\Admin\Blog\PostsController::class, 'updateAction'])->name('blog.updatePostAction');
   Route::post('/admin/content/blog/posts/delete/{post_id}/', [App\Http\Controllers\Admin\Blog\PostsController::class, 'deleteAction'])->name('blog.deletePostAction');
+  Route::get('/admin/storage/content/blog/preview/{image}', [App\Http\Controllers\Admin\Blog\PostsController::class, 'showPostPreview'])->name('storage.content.blog.preview');
 
   // Video categories
   Route::get('/admin/content/videos/categories/', [App\Http\Controllers\Admin\Video\СategoriesController::class, 'categories'])->name('video.categories');
@@ -57,6 +58,8 @@ Route::middleware("auth:admin")->group(function() {
   Route::get('/admin/content/videos/edit/{post_id}/', [App\Http\Controllers\Admin\Video\PostsController::class, 'update'])->name('video.updatePost');
   Route::post('/admin/content/videos/edit/{post_id}/', [App\Http\Controllers\Admin\Video\PostsController::class, 'updateAction'])->name('video.updatePostAction');
   Route::post('/admin/content/videos/posts/delete/{post_id}/', [App\Http\Controllers\Admin\Video\PostsController::class, 'deleteAction'])->name('video.deletePostAction');
+  Route::get('/admin/storage/content/video/{video}/', [App\Http\Controllers\Admin\Video\PostsController::class, 'showVideo'])->name('storage.content.video');
+  Route::get('/admin/storage/content/video/preview/{image}/', [App\Http\Controllers\Admin\Video\PostsController::class, 'showVideoPreview'])->name('storage.content.video.preview');
 
   // Downloads
   Route::get('/admin/content/downloads/files/', [App\Http\Controllers\Admin\Downloads\FilesController::class, 'files'])->name('downloads.files');
@@ -65,6 +68,8 @@ Route::middleware("auth:admin")->group(function() {
   Route::get('/admin/content/downloads/files/edit/{file_id}', [App\Http\Controllers\Admin\Downloads\FilesController::class, 'edit'])->name('downloads.files.edit');
   Route::post('/admin/content/downloads/files/edit/{file_id}', [App\Http\Controllers\Admin\Downloads\FilesController::class, 'editAction'])->name('downloads.files.editAction');
   Route::post('/admin/content/downloads/files/delete/{file_id}/', [App\Http\Controllers\Admin\Downloads\FilesController::class, 'deleteAction'])->name('downloads.files.deleteAction');
+  Route::get('/admin/storage/content/downloads/preview/{image}/', [App\Http\Controllers\Admin\Downloads\FilesController::class, 'showFilePreview'])->name('storage.content.downloads.preview');
+  Route::get('/admin/storage/content/downloads/files/{file}/', [App\Http\Controllers\Admin\Downloads\FilesController::class, 'downloadFile'])->name('storage.content.downloads.file');
 
   // Calendar
   Route::get('/admin/content/calendar/', [App\Http\Controllers\Admin\Calendar\CalendarController::class, 'calendar'])->name('calendar');

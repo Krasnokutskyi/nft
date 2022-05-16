@@ -6,10 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\DownloadsFiles as Files;
 use Illuminate\Support\Facades\Storage;
-use ZipArchive;
-use Response;
 use Illuminate\Support\Str;
 use App\Services\Access\AccessService as Access;
+use App\Helpers\Storage\StorageHelper;
+use ZipArchive;
+use Response;
 
 class FilesController extends Controller
 {
@@ -21,18 +22,19 @@ class FilesController extends Controller
 
   public function downloadFile(Request $request)
   {
-    $files = Files::where('file', '=', strval($request->route('file')));
+    $files = Files::where('access', '!=', 'nobody')->where('file', '=', strval($request->route('file')));
 
     if ($files->count() > 0) {
-
       if (Access::content()->downloads()->isThereAccessToFile($files->first()->id)) {
 
-        $file_path = 'downloads/files/' . $files->first()->file;
+        $file = $files->first();
+
+        $file_path = 'downloads/files/' . $file->file;
 
         if (Storage::disk('content')->exists($file_path)) {
           $download_file = Storage::disk('content')->path($file_path);
-          $new_name = $files->first()->title . '.' . pathinfo($download_file, PATHINFO_EXTENSION);
-          return response()->download($download_file, $new_name);
+          $new_name = $file->title . '.' . pathinfo($download_file, PATHINFO_EXTENSION);
+          return Response::download($download_file, $new_name);
         }
       }
     }
@@ -42,32 +44,32 @@ class FilesController extends Controller
 
   public function downloadAllFiles(Request $request)
   {
-    $files = Files::all();
+    $files = Files::where('access', '!=', 'nobody')->get();
 
     if ($files->count() > 0) {
 
-        $zip = new ZipArchive();
-        $zipFile = Storage::disk('content')->path('downloads/' . Str::random(20) . '.zip');
+      $zip = new ZipArchive();
+      $zipFile = Storage::disk('content')->path('downloads/' . Str::random(20) . '.zip');
 
-        if ($zip->open($zipFile, ZipArchive::CREATE) === TRUE) {
+      if ($zip->open($zipFile, ZipArchive::CREATE) === TRUE) {
 
-          foreach ($files as $key => $file) {
+        foreach ($files as $key => $file) {
 
-            if (!Access::content()->downloads()->isThereAccessToFile($file->id)) {
-              continue;
-            }
-
-            $file_path = 'downloads/files/' . $file->file;
-            if (Storage::disk('content')->exists($file_path)) {
-              $download_file = Storage::disk('content')->path($file_path);
-              $new_name = $file->title . '.' . pathinfo($download_file, PATHINFO_EXTENSION);
-              $zip->addFile($download_file, $new_name);
-            }
+          if (!Access::content()->downloads()->isThereAccessToFile($file->id)) {
+            continue;
           }
 
-          $zip->close();
+          $file_path = 'downloads/files/' . $file->file;
+          if (Storage::disk('content')->exists($file_path)) {
+            $download_file = Storage::disk('content')->path($file_path);
+            $new_name = $file->title . '.' . pathinfo($download_file, PATHINFO_EXTENSION);
+            $zip->addFile($download_file, $new_name);
+          }
+        }
 
-          return response()->download($zipFile)->deleteFileAfterSend(true);
+        $zip->close();
+
+        return response()->download($zipFile)->deleteFileAfterSend(true);
       }
     }
 
@@ -76,18 +78,14 @@ class FilesController extends Controller
 
   public function showFilePreview(Request $request)
   {
-    $files = Files::where('preview', '=', strval($request->route('image')));
+    $image = strval($request->route('image'));
 
-    if ($files->count() > 0) {
-      $preview_path = 'downloads/preview/' . $files->first()->preview;
-      if (Storage::disk('content')->exists($preview_path)) {
-        $preview = Storage::disk('content')->get($preview_path);
-        $response = Response::make($preview);
-        $response->header("Content-Type", Storage::disk('content')->mimeType($preview_path));
-        return $response;
-      }
+    $preview = StorageHelper::downloads()->files()->preview($image);
+
+    if (Files::where('access', '!=', 'nobody')->where('preview', '=', $image)->count() === 0 or is_null($preview)) {
+      abort(404);
     }
 
-    abort(404);
+    return $preview;
   }
 }

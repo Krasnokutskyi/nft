@@ -8,9 +8,8 @@ use Illuminate\Support\Facades\Route;
 use App\Models\BlogPosts as Posts;
 use App\Models\BlogCategories as Categories;
 use App\Models\BlogCategoriesPosts as CategoriesPosts;
-use Illuminate\Support\Facades\Storage;
-use Response;
 use App\Services\Access\AccessService as Access;
+use App\Helpers\Storage\StorageHelper;
 
 class PostsController extends Controller
 {
@@ -52,20 +51,15 @@ class PostsController extends Controller
   }
 
   public function showPostPreview(Request $request)
-  {
+  { 
+    $image = strval($request->route('image'));
 
-    $posts = Posts::where('preview', '=', strval($request->route('image')));
+    $preview = StorageHelper::blog()->posts()->preview($image);
 
-    if ($posts->count() > 0) {
-      $preview_path = 'blog/preview/' . $posts->first()->preview;
-      if (Storage::disk('content')->exists($preview_path)) {
-        $preview = Storage::disk('content')->get($preview_path);
-        $response = Response::make($preview);
-        $response->header("Content-Type", Storage::disk('content')->mimeType($preview_path));
-        return $response;
-      }
+    if (Posts::where('access', '!=', 'nobody')->where('preview', '=', $image)->count() === 0 or is_null($preview)) {
+      abort(404);
     }
 
-    abort(404);
+    return $preview;
   }
 }

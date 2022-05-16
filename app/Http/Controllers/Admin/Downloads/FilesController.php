@@ -11,6 +11,7 @@ use App\Models\DownloadsFilesPachages as FilesPachages;
 use App\Models\DownloadsFileTypes as FileTypes;
 use App\Http\Requests\Admin\Downloads\EditFileForm;
 use Illuminate\Support\Facades\Storage;
+use App\Helpers\Storage\StorageHelper;
 use Validator;
 
 class FilesController extends AdminController
@@ -69,8 +70,8 @@ class FilesController extends AdminController
 
       $file = $file->first();
       
-      $file->file = Files::getFileById($file->id);
-      $file->preview = Files::getPreviewFileById($file->id);
+      $file->file = StorageHelper::downloads()->files()->getInfoAboutFile($file->id);
+      $file->preview = StorageHelper::downloads()->files()->getInfoAboutPreview($file->id);
 
       $packages = Packages::orderBy('created_at', 'desc')->get();
       $types = FileTypes::orderBy('created_at', 'desc')->get();
@@ -179,5 +180,38 @@ class FilesController extends AdminController
     }
 
     return response()->json(['result' => false]);
+  }
+
+  public function downloadFile(Request $request)
+  {
+    $files = Files::where('file', '=', strval($request->route('file')));
+ 
+    if ($files->count() > 0) {
+
+      $file = $files->first();
+
+      $file_path = 'downloads/files/' . $file->file;
+
+      if (Storage::disk('content')->exists($file_path)) {
+        $download_file = Storage::disk('content')->path($file_path);
+        $new_name = $file->title . '.' . pathinfo($download_file, PATHINFO_EXTENSION);
+        return Response::download($download_file, $new_name);
+      }
+    }
+
+    abort(404);
+  }
+
+  public function showFilePreview(Request $request)
+  {
+    $image = strval($request->route('image'));
+
+    $preview = StorageHelper::downloads()->files()->preview($image);
+
+    if (is_null($preview)) {
+      abort(404);
+    }
+
+    return $preview;
   }
 }
