@@ -21,6 +21,7 @@ Route::middleware("guest:web")->group(function() {
 
   // Auth
   Route::post('/login/', [\App\Http\Controllers\Auth\LoginController::class, 'loginAction'])->name('loginAction');
+  Route::get('/login/{token}', [\App\Http\Controllers\Auth\LoginController::class, 'loginByTokenAction'])->name('loginByTokenAction');
   Route::post('/register/', [\App\Http\Controllers\Auth\RegisterController::class, 'registerAction'])->name('registerAction');
   Route::post('/register/pay/', [\App\Http\Controllers\Auth\RegisterController::class, 'registerActionPay'])->name('registerAction.pay');
 });

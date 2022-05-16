@@ -6,6 +6,7 @@ use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Helpers\Redirect\RedirectByContentHelper;
 
 class RedirectIfAuthenticated
 {
@@ -27,7 +28,11 @@ class RedirectIfAuthenticated
       }
 
       if (Auth::guard($guard)->check() and $guard !== 'admin') {
-        return redirect(route('blog.posts'));
+
+        $user = Auth::guard($guard)->user()->load(['packages']);
+        $redirect_to = $user->packages->first()->redirect_content;
+
+        return redirect(RedirectByContentHelper::getPath($redirect_to));
       }
     }
 

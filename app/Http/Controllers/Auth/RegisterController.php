@@ -89,12 +89,16 @@ class RegisterController extends Controller
       $order = $order->first();
       $order_parametrs = $order->getParameters();
 
+      $token = new Token();
+      $remember_token = $token->Unique('users', 'remember_token', 100);
+
       $user_id = User::create([
         'first_name' => $order_parametrs['first_name'], 
         'last_name' => $order_parametrs['last_name'],
         'phone' => $order_parametrs['phone'],
         'email' => $order_parametrs['email'],
         'password' => $order_parametrs['password'],
+        'remember_token' => $remember_token,
       ])->id;
 
       UserPackages::create([
@@ -105,7 +109,11 @@ class RegisterController extends Controller
       $order->update(['status' => 1]);
 
       return response()->json([
-        'status' => true, 'step'=> 'next'
+        'status' => true, 
+        'step' => 'next',
+        'urls' => [
+          'auth_by_token' => route('loginByTokenAction', ['token' => $remember_token]),
+        ],
       ])->cookie('order_token', null, 0);
     }
 

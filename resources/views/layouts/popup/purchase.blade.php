@@ -188,7 +188,7 @@
                     <div class="purchase__finish-subtitle"></div>
                     <div class="purchase__finish-price"></div>
                     <div class="purchase__finish-link">
-                        <a href="#">Go to Course</a>
+                        <a href="#auth_by_token">Go to Course</a>
                     </div>
                 </div>
                 <div class="purchase__finish" object-status="false">

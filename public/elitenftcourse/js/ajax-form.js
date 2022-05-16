@@ -109,5 +109,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (data.redirect) {
       window.location.href = data.redirect;
     }
+
+    if (data.urls instanceof Array || data.urls instanceof Object) {
+      $.each(data.urls, function(key, value) {
+        $('a[href=\"#' + key + '\"]').attr('href', value);
+      });
+    }
   }
 });

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Auth\LoginForm;
 use App\Helpers\Redirect\RedirectByContentHelper;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -28,5 +29,21 @@ class LoginController extends Controller
       'message' => 'Wrong email/password combination.',
       'errors' => ['email' => false, 'password' => false],
     ]);
+  }
+
+  public function loginByTokenAction(Request $request)
+  {
+    $token = strval($request->route('token'));
+
+    $users = User::with('packages')->where('remember_token', '=', $token)->get();
+
+    if ($users->count() === 1) {
+
+      $user = $users->first();
+
+      Auth::guard('web')->login($user, true);
+    }
+
+    return redirect()->route('home');
   }
 }
