@@ -1,5 +1,10 @@
 $(document).ready(function(){
 
+  $('input[name="card_number"]').mask('0000 0000 0000 0000');
+  $('input[name="expiration_month"]').mask('00');
+  $('input[name="expiration_year"]').mask('00');
+  $('input[name="cvv"]').mask('000');
+
   // Remove comments
   removeComments();
 

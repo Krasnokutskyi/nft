@@ -56,6 +56,7 @@
 .blog__item-preview > img {
     border-radius: 0.75rem;
     width: 18.75rem;
+    height: 11rem;
     display: inline-block;
     width: 100%;
 }
@@ -98,7 +99,7 @@
 }
 
 .blog__item-title:hover {
-    border-bottom: 2px solid #fff;
+    text-decoration: underline;
 }
 
 .market__title>span>h1 {

@@ -13,6 +13,17 @@
     padding-right: 1rem;
 }
 
+.downloads__box-pres,
+.downloads__box-size {
+    width: 33%;
+    max-width: 33%;
+}
+
+.downloads__box-button {
+    margin-left: auto;
+    margin-right: 3rem;
+}
+
 .downloads__title::before {
     content: '';
     width: 100%;

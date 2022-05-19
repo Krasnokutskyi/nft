@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/elitenftcourse/images/favicon.png" type="image/png">
 
     <title>Elite NFT Course</title>
 
@@ -62,6 +63,7 @@
     @endif
 
     {{ HTML::script('/elitenftcourse/js/ajax-form.js') }}
+    {{ HTML::script('/elitenftcourse/js/jquery.mask.js') }}
     {{ HTML::script('/elitenftcourse/js/script.js') }}
 
 </body>

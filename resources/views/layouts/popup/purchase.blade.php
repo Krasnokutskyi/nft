@@ -120,13 +120,13 @@
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <div class="purchase__input_group">
-                                                <input name="expiration_month" class="purchase__input" type="text" placeholder="Month" autocomplete="off" required>
+                                                <input name="expiration_month" class="purchase__input" type="text" placeholder="MM" autocomplete="off" required>
                                                 <div class="error-text expiration_month_error"></div>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <div class="purchase__input_group">
-                                                <input name="expiration_year" class="purchase__input" type="text" placeholder="Year" autocomplete="off" required>
+                                                <input name="expiration_year" class="purchase__input" type="text" placeholder="YY" autocomplete="off" required>
                                                 <div class="error-text expiration_year_error"></div>
                                             </div>
                                         </div>

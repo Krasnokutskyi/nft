@@ -3,6 +3,10 @@ body {
     font-size: 16px;
 }
 
+.swal2-html-container {
+    line-height: auto !important;
+}
+
 .page {
     position: relative;
     width: 100%;

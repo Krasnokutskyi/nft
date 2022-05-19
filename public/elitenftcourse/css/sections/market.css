@@ -84,6 +84,10 @@
 .market__item-name {
     font-weight: bold;
     font-size: 1.1rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 9rem;
 }
 
 .market__item-floor {
@@ -132,6 +136,7 @@
     align-items: center;
     font-weight: bold;
     margin-top: 0.4rem;
+    font-size: 1rem;
     color: #C9C7D0;
 }
 

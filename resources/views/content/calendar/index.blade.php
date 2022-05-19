@@ -7,7 +7,7 @@
         @include('layouts.headers.header-content')
 
         <div class="wrapper">
-            <div class="market__title"><span>Calendary</span></div>
+            <div class="market__title"><span>NFT Calendar</span></div>
             <div class="market market_inner">
                 <div class="row">
                     <div class="container-calendar">
