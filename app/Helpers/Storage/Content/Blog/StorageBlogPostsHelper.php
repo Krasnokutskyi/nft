@@ -10,7 +10,7 @@ class StorageBlogPostsHelper
 {
   public function preview(string $image)
   {
-    $posts = Posts::where('preview', '=', $image);
+    $posts = Posts::where('preview', '=', $image)->get();
 
     if ($posts->count() > 0) {
 

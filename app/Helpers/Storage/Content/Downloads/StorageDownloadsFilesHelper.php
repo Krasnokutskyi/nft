@@ -10,7 +10,7 @@ class StorageDownloadsFilesHelper
 {
   public function preview(string $image)
   {
-    $files = Files::where('preview', '=', $image);
+    $files = Files::where('preview', '=', $image)->get();
 
     if ($files->count() > 0) {
 

@@ -10,7 +10,7 @@ class StorageVideosPostsHelper
 {
   public function preview(string $image)
   {
-    $posts = Posts::where('preview', '=', $image);
+    $posts = Posts::where('preview', '=', $image)->get();
 
     if ($posts->count() > 0) {
 
@@ -32,13 +32,14 @@ class StorageVideosPostsHelper
 
   public function video(string $video)
   {
-    $posts = Posts::where('video', '=', $video);
+
+    $posts = Posts::where('video', '=', $video)->get();
 
     if ($posts->count() > 0) {
 
       $post = $posts->first();
 
-      $video_path = 'video/' . $post->first()->video;
+      $video_path = 'video/' . $post->video;
 
       if (Storage::disk('content')->exists($video_path)) {
         $video = Storage::disk('content')->get($video_path);
