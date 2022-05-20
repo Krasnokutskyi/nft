@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Refresh token
+Route::get('/refresh-token/', [App\Http\Controllers\TokensController::class, 'refreshToken'])->name('refreshToken');
 
 Route::middleware("guest:web")->group(function() {
 
