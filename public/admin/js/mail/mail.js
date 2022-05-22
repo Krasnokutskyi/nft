@@ -8,10 +8,14 @@ document.addEventListener("DOMContentLoaded", () => {
         [ { 'color': [] }, { 'background': [] } ],
         [ { 'header': '1' }, { 'header': '2' } ],
         [ { 'list': 'ordered' }, { 'list': 'bullet'}, { 'align': [] } ],
-        [ 'link', 'image' ]
+        [ 'link', 'image' ],
+        ['emoji'],
       ],
       'imageResize': {},
-      'imageDrop': true
+      'imageDrop': true,
+      "emoji-toolbar": true,
+      "emoji-shortname": true,
+      "emoji-textarea": true
     },
     theme: 'snow'
   });

@@ -49,6 +49,8 @@
     {{ HTML::script('/vendor/quill/modules/image-resize.min.js') }}
     {{ HTML::script('/vendor/quill/modules/video-resize.min.js') }}
     {{ HTML::script('/vendor/quill/modules/QuillDeltaToHtmlConverter.bundle.js') }}
+    {{ HTML::style('/vendor/quill/modules/emoji/quill-emoji.css') }}
+    {{ HTML::script('/vendor/quill/modules/emoji/quill-emoji.js') }}
 
     <!-- Sweetalert2 -->
     {{ HTML::style('/vendor/sweetalert2/dist/sweetalert2.min.css') }}
