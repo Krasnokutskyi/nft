@@ -85,6 +85,10 @@ Route::middleware("auth:admin")->group(function() {
   Route::post('/admin/content/market-activity/edit/{item_id}', [App\Http\Controllers\Admin\MarketActivity\MarketActivityController::class, 'editAction'])->name('marketActivity.editAction');
   Route::post('/admin/content/market-activity/delete/{item_id}', [App\Http\Controllers\Admin\MarketActivity\MarketActivityController::class, 'deleteAction'])->name('marketActivity.delete');
 
+  // Mail
+  Route::get('/admin/mail/', [App\Http\Controllers\Admin\Mail\MailController::class, 'mail'])->name('mail');
+  Route::post('/admin/mail/', [App\Http\Controllers\Admin\Mail\MailController::class, 'mailAction'])->name('mailAction');
+
   // Packages
   Route::get('/admin/packages/', [App\Http\Controllers\Admin\PackagesController::class, 'packages'])->name('packages');
   Route::get('/admin/packages/create/', [App\Http\Controllers\Admin\PackagesController::class, 'create'])->name('packages.create');

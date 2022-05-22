@@ -111,6 +111,11 @@
             </ul>
           </div>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('admin.mail') }}">
+            <i class="fas fa-envelope text-dark"></i> Mail
+          </a>
+        </li>
 {{--         <li class="nav-item">
           <a class="nav-link" href="#">
             <i class="fas fa-box text-dark"></i> Orders
